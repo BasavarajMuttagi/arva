@@ -1,8 +1,10 @@
 import { HeartStraight, Star } from "@phosphor-icons/react";
+import { useNavigate } from "react-router-dom";
 
 const CoffeeShopCard = () => {
+  const navigate = useNavigate();
   return (
-    <div>
+    <div onClick={() => navigate("/shop")} className="cursor-pointer">
       <div className="relative">
         <img
           src="https://media.istockphoto.com/id/664313320/photo/espresso-coffee-cup-with-beans-on-vintage-table.jpg?s=612x612&w=0&k=20&c=kaF8P4KuAlVhAm9zNcq5DxSimOv8w3yVQynS4dwPBHc="
