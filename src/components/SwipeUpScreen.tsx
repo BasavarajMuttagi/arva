@@ -10,7 +10,7 @@ import ItemCard from "./ItemCard";
 const SwipeUpScreen = () => {
   const [activeTab, setActiveTab] = useActiveTab();
   return (
-    <div className="h-screen rounded-t-3xl bg-white p-5 translate-y-[50%] space-y-10">
+    <div className="h-screen rounded-t-3xl bg-white p-5  space-y-10">
       <div className="text-deep-lagoon-blue pt-10 space-y-2">
         <p className="font-semibold text-xl">Haus Coffee</p>
         <div className="space-y-1">
