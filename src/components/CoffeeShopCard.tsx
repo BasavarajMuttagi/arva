@@ -1,7 +1,17 @@
 import { HeartStraight, Star } from "@phosphor-icons/react";
 import { useNavigate } from "react-router-dom";
 
-const CoffeeShopCard = () => {
+const CoffeeShopCard = ({
+  name,
+  rating,
+  reviewsCount = 4,
+  distance,
+}: {
+  name: string;
+  rating: number;
+  reviewsCount: number;
+  distance: number;
+}) => {
   const navigate = useNavigate();
   return (
     <div onClick={() => navigate("/shop")} className="cursor-pointer">
@@ -16,15 +26,17 @@ const CoffeeShopCard = () => {
         </div>
       </div>
       <div className="text-deep-lagoon-blue">
-        <p className="font-bold text-base">Home Coffee Roasters</p>
+        <p className="font-bold text-base">{name}</p>
         <div className="flex items-end space-x-1">
           <Star size={16} weight="fill" className="text-gold" />
           <div className="flex items-end space-x-2 font-semibold text-sm">
-            <p>{4.5}</p>
-            <p className="text-disabled">{`${1200} reviews`}</p>
+            <p>{rating}</p>
+            <p className="text-disabled">{`${reviewsCount} reviews`}</p>
           </div>
         </div>
-        <p className="text-sm font-semibold">3.8 miles</p>
+        <p className="text-sm font-semibold">
+          {(distance / 1000).toFixed(1)} km
+        </p>
       </div>
     </div>
   );
@@ -32,7 +44,7 @@ const CoffeeShopCard = () => {
 
 export default CoffeeShopCard;
 
-const RoundedBackgroundHeart = () => {
+export const RoundedBackgroundHeart = () => {
   return (
     <div className="relative">
       <div className="bg-seafoam-100 w-10 h-10 rounded-full border-[3px] border-white"></div>
