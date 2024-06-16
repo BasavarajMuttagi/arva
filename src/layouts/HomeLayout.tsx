@@ -1,11 +1,14 @@
 import BottomNav from "../components/BottomNav";
 import SearchBar from "../components/SearchBar";
 import TitleText from "../components/TitleText";
-import Filters from "../components/Filters";
+import FilterButton from "../components/FilterButton";
 import Profile from "../components/Profile";
 import CoffeeShopGrid from "../components/CoffeeShopGrid";
-
+import Filters from "../components/Filters";
+import { motion } from "framer-motion";
+import { useState } from "react";
 const HomeLayout = () => {
+  const [showFilters, setShowFilters] = useState(false);
   return (
     <div className="h-screen bg-white p-5 space-y-5">
       {/* top */}
@@ -16,8 +19,19 @@ const HomeLayout = () => {
         <TitleText />
         <div className="flex items-center justify-between space-x-2.5">
           <SearchBar defaultValue={""} onChange={() => console.log} />
-          <Filters />
+          <FilterButton onClick={() => setShowFilters((prev) => !prev)} />
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{
+            opacity: showFilters ? 1 : 0,
+            height: showFilters ? "auto" : "0px",
+          }}
+          transition={{ duration: 0.3 }}
+        >
+          <Filters />
+        </motion.div>
       </div>
 
       {/* Featured */}

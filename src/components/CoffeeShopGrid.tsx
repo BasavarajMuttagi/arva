@@ -6,13 +6,12 @@ import CoffeeShopSK from "./CoffeeShopSK";
 import useGeoLocation from "../hooks/useGeoLocation";
 
 const CoffeeShopGrid = () => {
-  const { position } = useGeoLocation();
-  console.log(position?.latitude, position?.longitude);
+  const { position, error } = useGeoLocation();
   const getCoffeeShops = async () => {
     try {
       const records = await apiClient.post("/shop/getshops", {
-        long: position?.longitude || 75.7099050476195,
-        lat: position?.latitude || 16.846751551210442,
+        long: position?.longitude,
+        lat: position?.latitude,
         max_distance: 2000,
       });
       return records.data;
@@ -26,7 +25,7 @@ const CoffeeShopGrid = () => {
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ["featured", position],
+    queryKey: ["featured", position, error],
     queryFn: async () => await getCoffeeShops(),
   });
 

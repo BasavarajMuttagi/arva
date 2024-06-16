@@ -1,17 +1,21 @@
 import { useEffect, useState } from "react";
-
+const defaultLocation = {
+  latitude: 16.846751551210442,
+  longitude: 75.7099050476195,
+};
 const useGeoLocation = () => {
   const [position, setPosition] = useState<{
     latitude: number;
     longitude: number;
-  }>();
-  const [error, setError] = useState<any>();
+  }>(defaultLocation);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const geo = navigator.geolocation;
 
     if (!geo) {
-      setError("Geolocation is not supported");
+      setError(true);
+      setPosition(defaultLocation);
       return;
     }
 
@@ -20,11 +24,13 @@ const useGeoLocation = () => {
       setPosition({ latitude, longitude });
     };
 
-    const handleError = (err: any) => {
-      setError(err.message);
+    const handleError = () => {
+      setError(true);
+      setPosition(defaultLocation);
     };
 
-    geo.getCurrentPosition(handleSuccess, handleError);
+    const watcher = geo.watchPosition(handleSuccess, handleError);
+    return () => geo.clearWatch(watcher);
   }, []);
 
   return { position, error };
