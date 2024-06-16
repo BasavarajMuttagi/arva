@@ -3,12 +3,18 @@ import ImageSlider from "../components/ImageSlider";
 import SwipeUpScreen from "../components/SwipeUpScreen";
 import ActiveTabContextProvider from "../contexts/ActiveTabContextProvider";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const CafeLayout = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="h-screen bg-red-300 relative">
+    <motion.div
+      className="h-screen bg-red-300 relative"
+      initial={{ opacity: 0, y: "-15%" }}
+      animate={{ opacity: 1, y: "0%" }}
+      transition={{ duration: 0.6 }}
+    >
       <div className="bg-white h-[30%] relative">
         <ImageSlider />
       </div>
@@ -23,7 +29,7 @@ const CafeLayout = () => {
       >
         <CaretLeft size={16} weight="bold" />
       </button>
-    </div>
+    </motion.div>
   );
 };
 
