@@ -43,7 +43,7 @@ const CafeLayout = () => {
           isError={isError}
         />
       </div>
-      <div className="h-[70%] absolute top-[27%] z-10">
+      <div className="h-[70%] absolute top-[27%] z-10 left-0 right-0">
         <ActiveTabContextProvider>
           <SwipeUpScreen shop={shop} isLoading={isLoading} isError={isError} />
         </ActiveTabContextProvider>

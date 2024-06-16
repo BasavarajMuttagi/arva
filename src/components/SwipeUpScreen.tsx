@@ -36,7 +36,7 @@ const SwipeUpScreen = ({
     );
   }
   return (
-    <div className="h-screen rounded-t-3xl bg-white p-5  space-y-10 w-screen">
+    <div className="h-screen rounded-t-3xl bg-white p-5  space-y-10 w-full">
       <div className="text-deep-lagoon-blue pt-10 space-y-2">
         <p className="font-semibold text-xl">{shop?.name}</p>
         <div className="space-y-1">
