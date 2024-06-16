@@ -11,7 +11,7 @@ const CafeLayout = () => {
   return (
     <motion.div
       className="h-screen bg-red-300 relative"
-      initial={{ opacity: 0, y: "-15%" }}
+      initial={{ opacity: 0, y: "-5%" }}
       animate={{ opacity: 1, y: "0%" }}
       transition={{ duration: 0.6 }}
     >
