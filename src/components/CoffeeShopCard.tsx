@@ -1,16 +1,21 @@
 import { HeartStraight, Star } from "@phosphor-icons/react";
 import { useNavigate } from "react-router-dom";
+import apiClient from "../axios/apiClient";
 
 const CoffeeShopCard = ({
   name,
   rating,
   reviewsCount = 4,
   distance,
+  shopId,
+  isFavorite = false,
 }: {
   name: string;
   rating: number;
   reviewsCount: number;
   distance: number;
+  shopId: string;
+  isFavorite: boolean;
 }) => {
   const navigate = useNavigate();
   return (
@@ -22,7 +27,7 @@ const CoffeeShopCard = ({
           className="aspect-[9/16] w-full rounded-xl h-fit max-h-48 object-cover object-center"
         />
         <div className="absolute -top-3 -right-2">
-          <RoundedBackgroundHeart />
+          <RoundedBackgroundHeart shopId={shopId} isFavorite={isFavorite} />
         </div>
       </div>
       <div className="text-deep-lagoon-blue">
@@ -44,15 +49,35 @@ const CoffeeShopCard = ({
 
 export default CoffeeShopCard;
 
-export const RoundedBackgroundHeart = () => {
+export const RoundedBackgroundHeart = ({
+  shopId,
+  isFavorite,
+}: {
+  shopId: string;
+  isFavorite: boolean;
+}) => {
+  const handleLike = async () => {
+    await apiClient.post("/user/addShopToFavorite", {
+      shopId,
+      isFavorite: !isFavorite,
+    });
+  };
   return (
-    <div className="relative">
+    <div className="relative" onClick={() => handleLike()}>
       <div className="bg-seafoam-100 w-10 h-10 rounded-full border-[3px] border-white"></div>
-      <HeartStraight
-        size={24}
-        className="absolute top-2 left-2 text-deep-lagoon-blue"
-        weight="bold"
-      />
+      {isFavorite ? (
+        <HeartStraight
+          size={24}
+          className="absolute top-2 left-2  fill-red-500"
+          weight="fill"
+        />
+      ) : (
+        <HeartStraight
+          size={24}
+          className="absolute top-2 left-2 text-deep-lagoon-blue"
+          weight="bold"
+        />
+      )}
     </div>
   );
 };
