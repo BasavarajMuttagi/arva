@@ -2,8 +2,9 @@ import axios from "axios";
 
 function apiClient() {
   const token = import.meta.env.VITE_TOKEN;
+  const baseUrl = import.meta.env.VITE_BASE_URL;
   return axios.create({
-    baseURL: "http://localhost:3000",
+    baseURL: baseUrl,
     headers: {
       Authorization: `Bearer ${token}`,
     },
