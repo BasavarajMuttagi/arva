@@ -12,7 +12,12 @@ const HomeLayout = () => {
   return (
     <div className="h-screen bg-white p-5 space-y-5">
       {/* top */}
-      <div className="space-y-5">
+      <motion.div
+        className="space-y-5"
+        initial={{ opacity: 0, y: "-15%" }}
+        animate={{ opacity: 1, y: "0%" }}
+        transition={{ duration: 0.6 }}
+      >
         <div className="flex items-center justify-end">
           <Profile />
         </div>
@@ -32,15 +37,20 @@ const HomeLayout = () => {
         >
           <Filters />
         </motion.div>
-      </div>
+      </motion.div>
 
       {/* Featured */}
-      <div className="space-y-5">
+      <motion.div
+        className="space-y-5"
+        initial={{ opacity: 0, y: "-3%" }}
+        animate={{ opacity: 1, y: "0%" }}
+        transition={{ duration: 0.5 }}
+      >
         <p className="font-semibold text-deep-lagoon-blue">
           Featured coffee shops
         </p>
         <CoffeeShopGrid />
-      </div>
+      </motion.div>
 
       {/* bottom */}
       <div className="fixed bottom-0 right-0 left-0">
