@@ -3,7 +3,7 @@ import axios from "axios";
 function apiClient() {
   const token = import.meta.env.VITE_TOKEN;
   return axios.create({
-    baseURL: "https://arva-backend.vercel.app",
+    baseURL: "http://localhost:3000",
     headers: {
       Authorization: `Bearer ${token}`,
     },

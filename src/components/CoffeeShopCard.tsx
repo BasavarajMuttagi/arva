@@ -19,7 +19,7 @@ const CoffeeShopCard = ({
 }) => {
   const navigate = useNavigate();
   return (
-    <div onClick={() => navigate("/shop")} className="cursor-pointer">
+    <div onClick={() => navigate(`/shop/${shopId}`)} className="cursor-pointer">
       <div className="relative">
         <img
           src="https://media.istockphoto.com/id/664313320/photo/espresso-coffee-cup-with-beans-on-vintage-table.jpg?s=612x612&w=0&k=20&c=kaF8P4KuAlVhAm9zNcq5DxSimOv8w3yVQynS4dwPBHc="

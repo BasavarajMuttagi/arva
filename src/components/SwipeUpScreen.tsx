@@ -1,18 +1,44 @@
-import { Star } from "@phosphor-icons/react";
+import { ArrowClockwise, CircleNotch, Star } from "@phosphor-icons/react";
 import Drink from "../assets/Drink";
 import Food from "../assets/Food";
 import { Coffee } from "react-feather";
 import { useActiveTab } from "../contexts/ActiveTabContextProvider";
 import { twMerge } from "tailwind-merge";
 import IconButton from "./IconButton";
-import ItemCard from "./ItemCard";
+import { CoffeeShopWithImages } from "../types";
+import FoodItems from "./FoodItems";
 
-const SwipeUpScreen = () => {
+const SwipeUpScreen = ({
+  isLoading,
+  isError,
+  shop,
+}: {
+  shop: CoffeeShopWithImages | undefined;
+  isLoading: boolean;
+  isError: boolean;
+}) => {
   const [activeTab, setActiveTab] = useActiveTab();
+
+  if (isLoading) {
+    return (
+      <div className="h-screen rounded-t-3xl bg-white p-5  space-y-10 flex justify-center items-center w-screen">
+        <CircleNotch size={40} className="text-orange-500 animate-spin" />
+      </div>
+    );
+  }
+  if (isError) {
+    return (
+      <div className="h-screen rounded-t-3xl bg-white p-5  space-y-10 flex justify-center items-center w-screen">
+        <button onClick={() => location.reload()}>
+          <ArrowClockwise size={40} className="text-blue-400" weight="bold" />
+        </button>
+      </div>
+    );
+  }
   return (
-    <div className="h-screen rounded-t-3xl bg-white p-5  space-y-10">
+    <div className="h-screen rounded-t-3xl bg-white p-5  space-y-10 w-screen">
       <div className="text-deep-lagoon-blue pt-10 space-y-2">
-        <p className="font-semibold text-xl">Haus Coffee</p>
+        <p className="font-semibold text-xl">{shop?.name}</p>
         <div className="space-y-1">
           <div className="flex items-end space-x-1">
             <Star size={16} weight="fill" className="text-gold" />
@@ -21,7 +47,7 @@ const SwipeUpScreen = () => {
               <p className="text-disabled">{`${429} reviews`}</p>
             </div>
           </div>
-          <p className="text-sm font-semibold">San Francisco, CA</p>
+          <p className="text-sm font-semibold">{shop?.address}</p>
         </div>
       </div>
 
@@ -64,10 +90,7 @@ const SwipeUpScreen = () => {
         />
       </div>
       <div className="space-y-8 pb-10">
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
+        <FoodItems products={shop?.products} />
       </div>
     </div>
   );

@@ -1,7 +1,9 @@
 import { HTMLAttributes } from "react";
 import { Plus } from "@phosphor-icons/react";
 
-const AddItem = (props: HTMLAttributes<HTMLDivElement>) => {
+const AddItem = (
+  props: HTMLAttributes<HTMLDivElement> & { itemId: string }
+) => {
   return (
     <div {...props} className="relative">
       <div className="bg-deep-lagoon-blue w-10 h-10 rounded-full border-[3px] border-white"></div>

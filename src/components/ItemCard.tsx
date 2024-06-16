@@ -1,6 +1,17 @@
 import AddItem from "./AddItem";
 
-const ItemCard = () => {
+const ItemCard = ({
+  name,
+  description,
+  price,
+  itemId,
+}: {
+  imageUrl: string;
+  name: string;
+  description: string;
+  price: number;
+  itemId: string;
+}) => {
   return (
     <div className="relative">
       <div className="w-full bg-seafoam-100 flex items-center p-5 rounded-2xl space-x-4">
@@ -10,15 +21,13 @@ const ItemCard = () => {
           className="aspect-[9/16] w-full rounded-xl h-fit max-h-32 object-cover object-center"
         />
         <div className="text-deep-lagoon-blue space-y-3">
-          <p className="font-bold text-base">Cafè mocha</p>
-          <p className="text-sm font-normal">
-            A chocolate-flavored warm beverage that is a variant of a café latte
-          </p>
-          <p className="text-sm font-semibold">$3.00</p>
+          <p className="font-bold text-base">{name}</p>
+          <p className="text-sm font-normal">{description}</p>
+          <p className="text-sm font-semibold">{price}</p>
         </div>
       </div>
       <div className="absolute -top-3 -right-2">
-        <AddItem />
+        <AddItem itemId={itemId} />
       </div>
     </div>
   );

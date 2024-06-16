@@ -4,6 +4,7 @@ import apiClient from "../axios/apiClient";
 import CoffeeShopCard from "./CoffeeShopCard";
 import CoffeeShopSK from "./CoffeeShopSK";
 import useGeoLocation from "../hooks/useGeoLocation";
+import { CoffeeShopData } from "../types";
 
 const CoffeeShopGrid = () => {
   const { position, error } = useGeoLocation();

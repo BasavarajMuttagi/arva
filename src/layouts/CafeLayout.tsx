@@ -2,11 +2,32 @@ import { CaretLeft } from "@phosphor-icons/react";
 import ImageSlider from "../components/ImageSlider";
 import SwipeUpScreen from "../components/SwipeUpScreen";
 import ActiveTabContextProvider from "../contexts/ActiveTabContextProvider";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useQuery } from "@tanstack/react-query";
+import apiClient from "../axios/apiClient";
+import { CoffeeShopWithImages } from "../types";
 
 const CafeLayout = () => {
+  let { shopId } = useParams();
   const navigate = useNavigate();
+  const getCoffeeShopById = async () => {
+    try {
+      const records = await apiClient.get(`/shop/getshop/${shopId}`);
+      return records.data;
+    } catch (error) {
+      return error;
+    }
+  };
+
+  const {
+    data: shop,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["currentshop", shopId],
+    queryFn: async () => (await getCoffeeShopById()) as CoffeeShopWithImages,
+  });
 
   return (
     <motion.div
@@ -16,11 +37,15 @@ const CafeLayout = () => {
       transition={{ duration: 0.6 }}
     >
       <div className="bg-white h-[30%] relative">
-        <ImageSlider />
+        <ImageSlider
+          isLoading={isLoading}
+          images={shop?.images!}
+          isError={isError}
+        />
       </div>
       <div className="h-[70%] absolute top-[27%] z-10">
         <ActiveTabContextProvider>
-          <SwipeUpScreen />
+          <SwipeUpScreen shop={shop} isLoading={isLoading} isError={isError} />
         </ActiveTabContextProvider>
       </div>
       <button
