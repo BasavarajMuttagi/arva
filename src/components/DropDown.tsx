@@ -12,7 +12,7 @@ const DropDown = ({
   const [show, setShow] = useState(false);
   useEffect(() => {
     onChange(selected);
-    setShow((prev) => !prev);
+    setShow(false);
   }, [selected]);
   return (
     <div className="relative">
