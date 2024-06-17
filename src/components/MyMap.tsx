@@ -16,13 +16,34 @@ export default function MyMap() {
   const [zoom] = useState(15);
   maptilersdk.config.apiKey = import.meta.env.VITE_MAP_API_KEY;
 
-  // create map 
+  // create map
   useEffect(() => {
     map.current = new maptilersdk.Map({
       container: mapContainer.current!,
       style: maptilersdk.MapStyle.STREETS,
       center: [currentPosition[0], currentPosition[1]],
       zoom: zoom,
+    });
+
+    map.current.on("load", async function () {
+      const geojson = await maptilersdk.data.get(
+        `a8891c4f-3ca7-4374-8f5c-fc8776691621`,
+      );
+      map.current.addSource("rio_cats", {
+        type: "geojson",
+        data: geojson,
+      });
+
+      map.current.addLayer({
+        id: "rio_cats",
+        type: "fill",
+        source: "rio_cats",
+        layout: {},
+        paint: {
+          "fill-color": "#98b",
+          "fill-opacity": 0.8,
+        },
+      });
     });
   }, [currentPosition[0], currentPosition[1], zoom]);
 
