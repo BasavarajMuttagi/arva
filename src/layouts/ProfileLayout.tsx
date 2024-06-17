@@ -4,6 +4,7 @@ import ProfileForm from "../components/ProfileForm";
 import { UserProfileResponse } from "../types";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
+import MyMap from "../components/MyMap";
 
 const ProfileLayout = () => {
   const getUserProfile = async () => {
@@ -30,6 +31,7 @@ const ProfileLayout = () => {
   return (
     <div className="h-screen overflow-y-auto bg-white">
       <ProfileForm defaultValues={profile!} />
+      <MyMap />
     </div>
   );
 };

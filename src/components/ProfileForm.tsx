@@ -40,7 +40,7 @@ const ProfileForm = ({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="h-full space-y-5 p-5 text-sm font-semibold text-deep-lagoon-blue"
+      className="h-fit space-y-5 p-5 text-sm font-semibold text-deep-lagoon-blue"
     >
       <div className="space-y-0.5">
         <div>Full Name</div>

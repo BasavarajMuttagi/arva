@@ -9,7 +9,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={routes} />
-      <ReactQueryDevtools />
+      <ReactQueryDevtools buttonPosition="bottom-left"/>
     </QueryClientProvider>
   );
 }
