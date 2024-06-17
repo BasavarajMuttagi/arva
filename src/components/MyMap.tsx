@@ -1,58 +1,71 @@
-import "leaflet/dist/leaflet.css";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { useRef, useEffect, useState } from "react";
+import * as maptilersdk from "@maptiler/sdk";
+import "@maptiler/sdk/dist/maptiler-sdk.css";
+import "./map.css";
 import useGeoLocation from "../hooks/useGeoLocation";
-import { useEffect, useRef, useState } from "react";
 
-const MyMap = () => {
+export default function MyMap() {
   const { position } = useGeoLocation();
-
-  const [markerPosition, setMarkerPosition] = useState<[number, number]>([
-    position.latitude,
+  const [currentPosition, setCurrentPosition] = useState<[number, number]>([
     position.longitude,
+    position.latitude,
   ]);
-  const mapRef = useRef<any>();
+  const [marker, setMarker] = useState<maptilersdk.Marker>();
+  const mapContainer = useRef(null);
+  const map = useRef<any>(null);
+  const [zoom] = useState(15);
+  maptilersdk.config.apiKey = import.meta.env.VITE_MAP_API_KEY;
 
+  // create map 
   useEffect(() => {
-    const map = mapRef.current;
-    if (!map) return;
-    setTimeout(() => {
-      map.flyTo([markerPosition[0], markerPosition[1]], 15, { duration: 3 });
-    }, 1000);
-  }, [markerPosition]);
+    map.current = new maptilersdk.Map({
+      container: mapContainer.current!,
+      style: maptilersdk.MapStyle.STREETS,
+      center: [currentPosition[0], currentPosition[1]],
+      zoom: zoom,
+    });
+  }, [currentPosition[0], currentPosition[1], zoom]);
 
-  function DraggableMarker() {
-    return (
-      <Marker
-        position={markerPosition}
-        draggable={true}
-        eventHandlers={{
-          dragend: (e) => {
-            console.log(e);
-            setMarkerPosition([e.target._latlng.lat, e.target._latlng.lng]);
-          },
-        }}
-      />
-    );
-  }
+  //create marker
+  useEffect(() => {
+    const newMarker = new maptilersdk.Marker()
+      .setLngLat([currentPosition[0], currentPosition[1]])
+      .addTo(map.current);
+
+    newMarker.setDraggable(true);
+    setMarker(newMarker);
+    return () => {
+      newMarker.remove();
+    };
+  }, [map.current, currentPosition[0], currentPosition[1]]);
+
+  //update marker position and get location data
+  useEffect(() => {
+    if (!marker) return;
+    async function getLocationData() {
+      const results = await maptilersdk.geocoding.reverse([
+        currentPosition[0],
+        currentPosition[1],
+      ]);
+      console.log(results.attribution);
+    }
+    const handleDragEnd = () => {
+      const { lng, lat } = marker.getLngLat();
+      console.log({ lng, lat });
+      setCurrentPosition([lng, lat]);
+      getLocationData();
+    };
+
+    marker.on("dragend", handleDragEnd);
+
+    return () => {
+      marker.off("dragend", handleDragEnd);
+    };
+  }, [marker]);
 
   return (
-    <div className="h-52 rounded p-1">
-      <MapContainer
-        ref={mapRef}
-        center={markerPosition}
-        zoom={15}
-        scrollWheelZoom={false}
-        className="h-full w-full"
-      >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <DraggableMarker />
-        <Popup position={markerPosition}>{markerPosition.join(", ")}</Popup>
-      </MapContainer>
+    <div className="map-wrap">
+      <div ref={mapContainer} className="map h-52" />
     </div>
   );
-};
-
-export default MyMap;
+}
