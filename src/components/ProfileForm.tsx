@@ -16,7 +16,6 @@ const ProfileForm = ({
   const [isSpin, setIsSpin] = useState(false);
   const {
     register,
-    reset,
     handleSubmit,
     formState: { errors },
   } = useForm<userType>({
