@@ -1,7 +1,8 @@
 import axios from "axios";
+import useCoffeeStore from "../store";
 
 function apiClient() {
-  const token = import.meta.env.VITE_TOKEN;
+  const token = useCoffeeStore.getState().token;
   const baseUrl = import.meta.env.VITE_BASE_URL;
   return axios.create({
     baseURL: baseUrl,
