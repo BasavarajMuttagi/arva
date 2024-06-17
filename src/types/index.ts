@@ -24,3 +24,16 @@ export type Product = {
   dietType: "VEG" | "NON-VEG";
   category: "COFFEE" | "DRINKS" | "FOOD";
 };
+
+
+
+type Location = {
+  coordinates: number[];
+};
+
+export type UserProfileResponse = {
+  location: Location;
+  _id: string;
+  fullname: string;
+  email: string;
+};

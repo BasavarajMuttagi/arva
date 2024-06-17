@@ -21,7 +21,7 @@ const BottomNav = () => {
           </NavLink>
         </li>
         <li className="px-7 py-5 text-gray-400 rounded-[30px] has-[>a.active]:bg-deep-lagoon-blue has-[>a.active]:text-white has-[>a.active]:drop-shadow-md">
-          <NavLink to={"/user"}>
+          <NavLink to={"/profile"}>
             <User size={24} />
           </NavLink>
         </li>

@@ -2,7 +2,7 @@ import BottomNav from "../components/BottomNav";
 import SearchBar from "../components/SearchBar";
 import TitleText from "../components/TitleText";
 import FilterButton from "../components/FilterButton";
-import Profile from "../components/Profile";
+import ProfilePicture from "../components/ProfilePicture";
 import CoffeeShopGrid from "../components/CoffeeShopGrid";
 import Filters from "../components/Filters";
 import { motion } from "framer-motion";
@@ -19,7 +19,7 @@ const HomeLayout = () => {
         transition={{ duration: 0.6 }}
       >
         <div className="flex items-center justify-end">
-          <Profile />
+          <ProfilePicture />
         </div>
         <TitleText />
         <div className="flex items-center justify-between space-x-2.5">
