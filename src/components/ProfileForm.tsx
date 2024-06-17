@@ -5,12 +5,14 @@ import { UserProfileResponse } from "../types";
 import apiClient from "../axios/apiClient";
 import { useState } from "react";
 import { CircleNotch } from "@phosphor-icons/react";
+import { useQueryClient } from "@tanstack/react-query";
 
 const ProfileForm = ({
   defaultValues,
 }: {
   defaultValues: UserProfileResponse;
 }) => {
+  const client = useQueryClient();
   const [isSpin, setIsSpin] = useState(false);
   const {
     register,
@@ -24,11 +26,16 @@ const ProfileForm = ({
 
   const onSubmit = async (data: userType) => {
     setIsSpin(true);
-    await apiClient.post("/user/updateprofile", data).finally(() => {
-      setIsSpin(false);
-    });
-    reset();
-    location.reload();
+    await apiClient
+      .post("/user/updateprofile", data)
+      .then(() => {
+        client.refetchQueries({
+          queryKey: ["profile"],
+        });
+      })
+      .finally(() => {
+        setIsSpin(false);
+      });
   };
 
   return (

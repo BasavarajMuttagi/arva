@@ -7,12 +7,8 @@ import Error from "../components/Error";
 
 const ProfileLayout = () => {
   const getUserProfile = async () => {
-    try {
-      const records = await apiClient.get(`/user/profile`);
-      return records.data;
-    } catch (error) {
-      return error;
-    }
+    const records = await apiClient.get(`/user/profile`);
+    return records;
   };
 
   const {
@@ -21,7 +17,7 @@ const ProfileLayout = () => {
     isError,
   } = useQuery({
     queryKey: ["profile"],
-    queryFn: async () => (await getUserProfile()) as UserProfileResponse,
+    queryFn: async () => (await getUserProfile()).data as UserProfileResponse,
   });
   if (isLoading) {
     return <Loading />;

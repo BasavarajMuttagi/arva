@@ -9,16 +9,12 @@ import { CoffeeShopData } from "../types";
 const CoffeeShopGrid = () => {
   const { position, error } = useGeoLocation();
   const getCoffeeShops = async () => {
-    try {
-      const records = await apiClient.post("/shop/getshops", {
-        long: position?.longitude,
-        lat: position?.latitude,
-        max_distance: 2000,
-      });
-      return records.data;
-    } catch (error) {
-      return error;
-    }
+    const records = await apiClient.post("/shop/getshops", {
+      long: position?.longitude,
+      lat: position?.latitude,
+      max_distance: 2000,
+    });
+    return records;
   };
 
   const {
@@ -27,7 +23,7 @@ const CoffeeShopGrid = () => {
     isError,
   } = useQuery({
     queryKey: ["featured", position, error],
-    queryFn: async () => (await getCoffeeShops()) as CoffeeShopData[],
+    queryFn: async () => (await getCoffeeShops()).data as CoffeeShopData[],
   });
 
   if (isLoading) {
@@ -41,13 +37,18 @@ const CoffeeShopGrid = () => {
 
   if (isError) {
     return (
-      <div className="text-sm text-red-300 text-center fontm">
+      <div className="fontm text-center text-sm text-red-300">
         Error fetching coffee shops
       </div>
     );
   }
   return (
     <div className="grid grid-cols-2 gap-4 pb-28">
+      {shops?.length == 0 && (
+        <div className="col-span-2 flex items-center space-x-2 place-self-center text-sm font-semibold text-[#A4ADAE]">
+          No Shops Found
+        </div>
+      )}
       {shops?.map(({ _id, distance, name, isFavorite }) => (
         <CoffeeShopCard
           key={_id}
@@ -59,7 +60,7 @@ const CoffeeShopGrid = () => {
           isFavorite={isFavorite}
         />
       ))}
-      <div className="text-[#A4ADAE] place-self-center col-span-2 text-sm flex items-center space-x-2 font-semibold">
+      <div className="col-span-2 flex items-center space-x-2 place-self-center text-sm font-semibold text-[#A4ADAE]">
         <p>You Have Reached The End!</p>
         <Mug className="h-10 w-10" />
       </div>

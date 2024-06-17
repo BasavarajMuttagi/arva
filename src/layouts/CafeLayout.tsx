@@ -12,12 +12,8 @@ const CafeLayout = () => {
   let { shopId } = useParams();
   const navigate = useNavigate();
   const getCoffeeShopById = async () => {
-    try {
-      const records = await apiClient.get(`/shop/getshop/${shopId}`);
-      return records.data;
-    } catch (error) {
-      return error;
-    }
+    const records = await apiClient.get(`/shop/getshop/${shopId}`);
+    return records;
   };
 
   const {
@@ -26,31 +22,32 @@ const CafeLayout = () => {
     isError,
   } = useQuery({
     queryKey: ["currentshop", shopId],
-    queryFn: async () => (await getCoffeeShopById()) as CoffeeShopWithImages,
+    queryFn: async () =>
+      (await getCoffeeShopById()).data as CoffeeShopWithImages,
   });
 
   return (
     <motion.div
-      className="h-screen bg-red-300 relative"
+      className="relative h-screen bg-red-300"
       initial={{ opacity: 0, y: "-5%" }}
       animate={{ opacity: 1, y: "0%" }}
       transition={{ duration: 0.6 }}
     >
-      <div className="bg-white h-[30%] relative">
+      <div className="relative h-[30%] bg-white">
         <ImageSlider
           isLoading={isLoading}
           images={shop?.images!}
           isError={isError}
         />
       </div>
-      <div className="h-[70%] absolute top-[27%] z-10 left-0 right-0">
+      <div className="absolute left-0 right-0 top-[27%] z-10 h-[70%]">
         <ActiveTabContextProvider>
           <SwipeUpScreen shop={shop} isLoading={isLoading} isError={isError} />
         </ActiveTabContextProvider>
       </div>
       <button
         onClick={() => navigate("/")}
-        className="p-2 bg-white rounded-md w-fit h-fit absolute inset-2 z-10"
+        className="absolute inset-2 z-10 h-fit w-fit rounded-md bg-white p-2"
       >
         <CaretLeft size={16} weight="bold" />
       </button>
