@@ -14,6 +14,10 @@ export type CoffeeShopWithImages = {
   address: string;
   images: string[];
   products: Product[];
+  location: {
+    type: "Point";
+    coordinates: [number, number];
+  };
 };
 
 export type Product = {
@@ -24,8 +28,6 @@ export type Product = {
   dietType: "VEG" | "NON-VEG";
   category: "COFFEE" | "DRINKS" | "FOOD";
 };
-
-
 
 type Location = {
   coordinates: number[];
