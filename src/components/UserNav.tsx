@@ -3,11 +3,11 @@ import useCoffeeStore from "../store";
 import { MapPinLine, Scroll, UserCircle } from "@phosphor-icons/react";
 
 const UserNav = () => {
-  const { logout } = useCoffeeStore();
+  const { logout, displayName } = useCoffeeStore();
   return (
     <div className="flex h-[80%] flex-col justify-between py-2">
       <div className="py-1 text-center text-3xl font-semibold text-deep-lagoon-blue">
-        Basavaraj Muttagi
+       Hi, {displayName}
       </div>
       <ul className="space-y-2">
         <li className="rounded-md p-3 hover:bg-seafoam-100">

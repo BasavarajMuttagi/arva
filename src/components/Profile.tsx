@@ -4,10 +4,8 @@ import Loading from "./Loading";
 import Error from "./Error";
 import ProfileForm from "./ProfileForm";
 import { UserProfileResponse } from "../types";
-import useCoffeeStore from "../store";
 
 const Profile = () => {
-  const { displayName } = useCoffeeStore();
   const getUserProfile = async () => {
     const records = await apiClient.get(`/user/profile`);
     return records;
@@ -32,7 +30,7 @@ const Profile = () => {
   return (
     <div className="h-full overflow-y-auto bg-white">
       <div className="py-1 text-center text-3xl font-semibold text-deep-lagoon-blue">
-        {displayName}
+        Profile
       </div>
       <ProfileForm defaultValues={profile!} />
     </div>

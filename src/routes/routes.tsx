@@ -70,7 +70,6 @@ const routes = createBrowserRouter([
             path: "address",
             element: (
               <UserLayout>
-                {/* <AddressForm /> */}
                 <AllAddresses />
               </UserLayout>
             ),
