@@ -7,10 +7,11 @@ import CoffeeShopGrid from "../components/CoffeeShopGrid";
 import Filters from "../components/Filters";
 import { motion } from "framer-motion";
 import { useState } from "react";
-const HomeLayout = () => {
+
+const Home = () => {
   const [showFilters, setShowFilters] = useState(false);
   return (
-    <div className="h-screen bg-white p-5 space-y-5">
+    <div className="h-full space-y-5 bg-white p-5">
       {/* top */}
       <motion.div
         className="space-y-5"
@@ -53,11 +54,11 @@ const HomeLayout = () => {
       </motion.div>
 
       {/* bottom */}
-      <div className="fixed bottom-0 right-0 left-0">
+      <div className="fixed bottom-0 left-0 right-0">
         <BottomNav />
       </div>
     </div>
   );
 };
 
-export default HomeLayout;
+export default Home;

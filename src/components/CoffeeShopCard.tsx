@@ -1,6 +1,6 @@
-import { HeartStraight, Star } from "@phosphor-icons/react";
+import { Star } from "@phosphor-icons/react";
 import { useNavigate } from "react-router-dom";
-import apiClient from "../axios/apiClient";
+import { RoundedBackgroundHeart } from "./RoundedBackgroundHeart";
 
 const CoffeeShopCard = ({
   name,
@@ -24,17 +24,17 @@ const CoffeeShopCard = ({
         <img
           src="https://media.istockphoto.com/id/664313320/photo/espresso-coffee-cup-with-beans-on-vintage-table.jpg?s=612x612&w=0&k=20&c=kaF8P4KuAlVhAm9zNcq5DxSimOv8w3yVQynS4dwPBHc="
           alt="coffee"
-          className="aspect-[9/16] w-full rounded-xl h-fit max-h-48 object-cover object-center"
+          className="aspect-[9/16] h-fit max-h-48 w-full rounded-xl object-cover object-center"
         />
-        <div className="absolute -top-3 -right-2">
+        <div className="absolute -right-2 -top-3">
           <RoundedBackgroundHeart shopId={shopId} isFavorite={isFavorite} />
         </div>
       </div>
       <div className="text-deep-lagoon-blue">
-        <p className="font-bold text-base">{name}</p>
+        <p className="text-base font-bold">{name}</p>
         <div className="flex items-end space-x-1">
           <Star size={16} weight="fill" className="text-gold" />
-          <div className="flex items-end space-x-2 font-semibold text-sm">
+          <div className="flex items-end space-x-2 text-sm font-semibold">
             <p>{rating}</p>
             <p className="text-disabled">{`${reviewsCount} reviews`}</p>
           </div>
@@ -48,36 +48,3 @@ const CoffeeShopCard = ({
 };
 
 export default CoffeeShopCard;
-
-export const RoundedBackgroundHeart = ({
-  shopId,
-  isFavorite,
-}: {
-  shopId: string;
-  isFavorite: boolean;
-}) => {
-  const handleLike = async () => {
-    await apiClient.post("/user/addShopToFavorite", {
-      shopId,
-      isFavorite: !isFavorite,
-    });
-  };
-  return (
-    <div className="relative" onClick={() => handleLike()}>
-      <div className="bg-seafoam-100 w-10 h-10 rounded-full border-[3px] border-white"></div>
-      {isFavorite ? (
-        <HeartStraight
-          size={24}
-          className="absolute top-2 left-2  fill-red-500"
-          weight="fill"
-        />
-      ) : (
-        <HeartStraight
-          size={24}
-          className="absolute top-2 left-2 text-deep-lagoon-blue"
-          weight="bold"
-        />
-      )}
-    </div>
-  );
-};

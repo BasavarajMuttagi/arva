@@ -1,5 +1,4 @@
 import { createBrowserRouter } from "react-router-dom";
-import Home from "../pages/Home";
 import Cafe from "../pages/Cafe";
 import User from "../pages/User";
 import Login from "../pages/Login";
@@ -11,6 +10,9 @@ import UserLayout from "../layouts/UserLayout";
 import Profile from "../components/Profile";
 import AllAddresses from "../components/AllAddresses";
 import AddressForm from "../components/AddressForm";
+import MainLayout from "../layouts/MainLayout";
+import Home from "../components/Home";
+import Favorite from "../components/Favorite";
 
 const routes = createBrowserRouter([
   {
@@ -31,7 +33,11 @@ const routes = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: (
+          <MainLayout>
+            <Home />
+          </MainLayout>
+        ),
       },
 
       {
@@ -40,11 +46,19 @@ const routes = createBrowserRouter([
       },
       {
         path: "/favorite",
-        element: <Home />,
+        element: (
+          <MainLayout>
+            <Favorite />
+          </MainLayout>
+        ),
       },
       {
         path: "/bookmark",
-        element: <Home />,
+        element: (
+          <MainLayout>
+            <div>Hi Card there</div>
+          </MainLayout>
+        ),
       },
       {
         path: "/user",
