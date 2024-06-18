@@ -17,13 +17,13 @@ const DropDown = ({
   return (
     <div className="relative">
       <div
-        className="border rounded-lg w-32 px-3 py-[2px] font-semibold text-gray-600 text-[17px] flex items-center justify-between"
+        className="flex w-32 items-center justify-between rounded-lg border px-3 py-[2px] text-[17px] font-semibold text-gray-600"
         onClick={() => setShow((prev) => !prev)}
       >
         <p>{selected}</p>
         <CaretDown size={16} />
       </div>
-      <div className="absolute top-10 left-0 z-10 shadow">
+      <div className="absolute left-0 top-10 z-50 shadow">
         {show && <Options setSelected={setSelected} selected={selected} />}
       </div>
     </div>
@@ -40,12 +40,12 @@ const Options = ({
   selected: "Rating" | "Distance";
 }) => {
   return (
-    <div className="w-32 bg-white rounded-md border font-medium text-gray-500 text-base">
+    <div className="w-32 rounded-md border bg-white text-base font-medium text-gray-500">
       <ul>
         <li
           value={"Rating"}
           onClick={() => setSelected("Rating")}
-          className="px-3 py-1 flex items-center justify-between"
+          className="flex items-center justify-between px-3 py-1"
         >
           <span>Rating</span>
           {selected == "Rating" && <Check size={16} />}
@@ -53,7 +53,7 @@ const Options = ({
         <li
           value={"Distance"}
           onClick={() => setSelected("Distance")}
-          className="px-3 py-1 flex items-center justify-between"
+          className="flex items-center justify-between px-3 py-1"
         >
           <span>Distance</span>
           {selected == "Distance" && <Check size={16} />}

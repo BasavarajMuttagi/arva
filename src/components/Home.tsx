@@ -27,17 +27,16 @@ const Home = () => {
           <SearchBar defaultValue={""} onChange={() => console.log} />
           <FilterButton onClick={() => setShowFilters((prev) => !prev)} />
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{
-            opacity: showFilters ? 1 : 0,
-            height: showFilters ? "auto" : "0px",
-          }}
-          transition={{ duration: 0.3 }}
-        >
-          <Filters />
-        </motion.div>
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, height: 0 }}
+        animate={{
+          opacity: showFilters ? 1 : 0,
+          height: showFilters ? "auto" : "0px",
+        }}
+        transition={{ duration: 0.3 }}
+      >
+        <Filters />
       </motion.div>
 
       {/* Featured */}
