@@ -37,7 +37,7 @@ const CoffeeShopGrid = () => {
 
   if (isError) {
     return (
-      <div className="fontm text-center text-sm text-red-300">
+      <div className="font-medium text-center text-sm text-red-300">
         Error fetching coffee shops
       </div>
     );

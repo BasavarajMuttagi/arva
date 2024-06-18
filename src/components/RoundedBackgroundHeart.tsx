@@ -1,3 +1,4 @@
+import { useQueryClient } from "@tanstack/react-query";
 import apiClient from "../axios/apiClient";
 import { HeartStraight } from "@phosphor-icons/react";
 export const RoundedBackgroundHeart = ({
@@ -7,14 +8,28 @@ export const RoundedBackgroundHeart = ({
   shopId: string;
   isFavorite: boolean;
 }) => {
+  const client = useQueryClient();
   const handleLike = async () => {
     await apiClient.post("/user/addShopToFavorite", {
       shopId,
       isFavorite: !isFavorite,
     });
+
+    client.refetchQueries({
+      queryKey: ["featured"],
+    });
+    client.refetchQueries({
+      queryKey: ["liked"],
+    });
   };
   return (
-    <div className="relative" onClick={() => handleLike()}>
+    <div
+      className="relative"
+      onClick={(e) => {
+        handleLike();
+        e.stopPropagation();
+      }}
+    >
       <div className="h-10 w-10 rounded-full border-[3px] border-white bg-seafoam-100"></div>
       {isFavorite ? (
         <HeartStraight
