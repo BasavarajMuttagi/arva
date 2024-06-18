@@ -4,7 +4,11 @@ import "@maptiler/sdk/dist/maptiler-sdk.css";
 import "./map.css";
 import useGeoLocation from "../hooks/useGeoLocation";
 
-export default function MyMap() {
+export default function MyMap({
+  getLocation,
+}: {
+  getLocation: (data: any) => void;
+}) {
   const { position } = useGeoLocation();
   const [currentPosition, setCurrentPosition] = useState<[number, number]>([
     position.longitude,
@@ -18,6 +22,7 @@ export default function MyMap() {
 
   // create map
   useEffect(() => {
+    getLocation([currentPosition[0], currentPosition[1]]);
     map.current = new maptilersdk.Map({
       container: mapContainer.current!,
       style: maptilersdk.MapStyle.STREETS,
@@ -74,6 +79,7 @@ export default function MyMap() {
       const { lng, lat } = marker.getLngLat();
       console.log({ lng, lat });
       setCurrentPosition([lng, lat]);
+      getLocation([lng, lat]);
       getLocationData();
     };
 

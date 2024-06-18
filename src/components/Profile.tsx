@@ -1,12 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import apiClient from "../axios/apiClient";
-import ProfileForm from "../components/ProfileForm";
+import Loading from "./Loading";
+import Error from "./Error";
+import ProfileForm from "./ProfileForm";
 import { UserProfileResponse } from "../types";
-import Loading from "../components/Loading";
-import Error from "../components/Error";
-import MyMap from "../components/MyMap";
 
-const ProfileLayout = () => {
+const Profile = () => {
   const getUserProfile = async () => {
     const records = await apiClient.get(`/user/profile`);
     return records;
@@ -29,11 +28,10 @@ const ProfileLayout = () => {
   }
 
   return (
-    <div className="h-screen overflow-y-auto bg-white">
+    <div className="h-full overflow-y-auto bg-white">
       <ProfileForm defaultValues={profile!} />
-      <MyMap />
     </div>
   );
 };
 
-export default ProfileLayout;
+export default Profile;

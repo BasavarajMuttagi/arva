@@ -30,6 +30,7 @@ const LoginForm = () => {
         setToken(res.data.token);
         navigate("/");
         reset();
+        location.reload();
       })
       .finally(() => {
         setIsSpin(false);
