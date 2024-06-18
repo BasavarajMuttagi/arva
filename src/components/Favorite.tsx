@@ -4,12 +4,13 @@ import { CoffeeShopData } from "../types";
 import CoffeeShopSK from "./CoffeeShopSK";
 import CoffeeShopCard from "./CoffeeShopCard";
 import Mug from "../assets/Mug";
+import { motion } from "framer-motion";
 
 const Favorite = () => {
   const getCoffeeLikedShops = async () => {
     const records = await apiClient.post("/shop/getallfavoriteshops", {
       long: 75.72271730435826,
-      lat: 16.811527275850516
+      lat: 16.811527275850516,
     });
     return records;
   };
@@ -25,22 +26,37 @@ const Favorite = () => {
 
   if (isLoading) {
     return (
-      <div className="grid grid-cols-2 gap-4 p-5 pb-28">
+      <motion.div
+        className="grid grid-cols-2 gap-4 p-5 pb-28"
+        initial={{ opacity: 0, y: "-15%" }}
+        animate={{ opacity: 1, y: "0%" }}
+        transition={{ duration: 0.6 }}
+      >
         {isLoading &&
           [...Array(8)].map((_, index) => <CoffeeShopSK key={index} />)}
-      </div>
+      </motion.div>
     );
   }
 
   if (isError) {
     return (
-      <div className="flex h-full flex-col items-center justify-center text-center text-sm font-medium text-red-300">
+      <motion.div
+        className="flex h-full flex-col items-center justify-center text-center text-sm font-medium text-red-300"
+        initial={{ opacity: 0, y: "-15%" }}
+        animate={{ opacity: 1, y: "0%" }}
+        transition={{ duration: 0.6 }}
+      >
         Error fetching coffee shops
-      </div>
+      </motion.div>
     );
   }
   return (
-    <div className="grid grid-cols-2 gap-4 p-5 pb-28">
+    <motion.div
+      className="grid grid-cols-2 gap-4 p-5 pb-28"
+      initial={{ opacity: 0, y: "-15%" }}
+      animate={{ opacity: 1, y: "0%" }}
+      transition={{ duration: 0.6 }}
+    >
       <div className="col-span-2 py-1 text-center text-3xl font-semibold text-deep-lagoon-blue">
         Favorite
       </div>
@@ -66,7 +82,7 @@ const Favorite = () => {
           <Mug className="h-10 w-10" />
         </div>
       )}
-    </div>
+    </motion.div>
   );
 };
 
