@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const { setToken } = useCoffeeStore();
+  const { setToken, setDisplayName } = useCoffeeStore();
   const [isSpin, setIsSpin] = useState(false);
 
   const {
@@ -28,6 +28,7 @@ const LoginForm = () => {
       .post("/auth/login", data)
       .then((res: AxiosResponse) => {
         setToken(res.data.token);
+        setDisplayName(res.data.user.fullname);
         navigate("/");
         reset();
         location.reload();

@@ -8,7 +8,9 @@ const storageModule = {
 
 type store = {
   token: string;
+  displayName: string;
   setToken: (newToken: string) => void;
+  setDisplayName: (name: string) => void;
   logout: () => void;
 };
 
@@ -16,10 +18,13 @@ const useCoffeeStore = create<store>()(
   persist(
     (set) => ({
       token: "",
+      displayName: "",
       setToken: (newToken) => set(() => ({ token: newToken })),
+      setDisplayName: (name: string) => set(() => ({ displayName: name })),
       logout: () => {
         set(() => ({
           token: "",
+          displayName: "",
         }));
       },
     }),

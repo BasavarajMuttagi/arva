@@ -47,7 +47,7 @@ const ProfileForm = ({
         <input
           type="text"
           {...register("fullname")}
-          className="w-full rounded-md border px-2 py-1 text-base text-gray-500 outline-none"
+          className="w-full rounded-md border p-3 text-base text-gray-500 outline-none"
         />
         {errors.fullname && (
           <p className="text-xs text-red-400">{errors.fullname.message}</p>
@@ -59,7 +59,7 @@ const ProfileForm = ({
           readOnly
           type="email"
           {...register("email")}
-          className="w-full rounded-md border bg-seafoam-100 px-2 py-1 text-base text-gray-500 outline-none"
+          className="w-full rounded-md border bg-seafoam-100 p-3 text-base text-gray-500 outline-none"
         />
         {errors.email && (
           <p className="text-xs text-red-400">{errors.email.message}</p>
@@ -70,7 +70,7 @@ const ProfileForm = ({
         <input
           type="tel"
           {...register("phone")}
-          className="w-full rounded-md border px-2 py-1 text-base text-gray-500 outline-none"
+          className="w-full rounded-md border p-3 text-base text-gray-500 outline-none"
         />
         {errors.phone && (
           <p className="text-xs text-red-400">{errors.phone.message}</p>
@@ -81,7 +81,7 @@ const ProfileForm = ({
         <input
           type="text"
           {...register("address")}
-          className="w-full rounded-md border px-2 py-1 text-base text-gray-500 outline-none"
+          className="w-full rounded-md border p-3 text-base text-gray-500 outline-none"
         />
         {errors.address && (
           <p className="text-xs text-red-400">{errors.address.message}</p>
@@ -92,7 +92,7 @@ const ProfileForm = ({
         <input
           type="text"
           {...register("pincode")}
-          className="w-full rounded-md border px-2 py-1 text-base text-gray-500 outline-none"
+          className="w-full rounded-md border p-3 text-base text-gray-500 outline-none"
         />
         {errors.pincode && (
           <p className="text-xs text-red-400">{errors.pincode.message}</p>
