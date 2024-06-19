@@ -39,3 +39,55 @@ export type UserProfileResponse = {
   fullname: string;
   email: string;
 };
+
+
+
+
+
+
+
+
+type Metadata = {
+  id: string;
+};
+
+type ProductData = {
+  metadata: Metadata;
+  name: string;
+  description: string;
+  images: string[];
+};
+
+type PriceData = {
+  product_data: ProductData;
+  currency: string;
+  unit_amount: number;
+};
+
+type Item = {
+  price_data: PriceData;
+  quantity: number;
+  _id: string;
+};
+
+type ShopInfo = {
+  _id: string;
+  name: string;
+  address: string;
+};
+
+type Address = {
+  title: string;
+};
+
+export type OrderData = {
+  address: Address;
+  _id: string;
+  shopId: ShopInfo;
+  items: Item[];
+};
+
+export type Orders = {
+  message: string;
+  data: OrderData[];
+};

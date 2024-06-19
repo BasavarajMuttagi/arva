@@ -15,6 +15,9 @@ import Home from "../components/Home";
 import Favorite from "../components/Favorite";
 import Cart from "../components/Cart";
 import StripePaymentForm from "../components/StripePaymentForm";
+import Orders from "../components/Orders";
+import PaymentSuccess from "../components/PaymentSuccess";
+import PaymentFailed from "../components/PaymentFailed";
 
 const routes = createBrowserRouter([
   {
@@ -40,6 +43,14 @@ const routes = createBrowserRouter([
             <Home />
           </MainLayout>
         ),
+      },
+      {
+        path: "/success",
+        element: <PaymentSuccess />,
+      },
+      {
+        path: "/failure",
+        element: <PaymentFailed />,
       },
       {
         path: "payment",
@@ -110,7 +121,7 @@ const routes = createBrowserRouter([
             path: "orders",
             element: (
               <UserLayout>
-                <Home />
+                <Orders />
               </UserLayout>
             ),
           },
