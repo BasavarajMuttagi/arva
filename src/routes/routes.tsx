@@ -14,6 +14,7 @@ import MainLayout from "../layouts/MainLayout";
 import Home from "../components/Home";
 import Favorite from "../components/Favorite";
 import Cart from "../components/Cart";
+import StripePaymentForm from "../components/StripePaymentForm";
 
 const routes = createBrowserRouter([
   {
@@ -38,6 +39,14 @@ const routes = createBrowserRouter([
           <MainLayout>
             <Home />
           </MainLayout>
+        ),
+      },
+      {
+        path: "payment",
+        element: (
+          <UserLayout>
+            <StripePaymentForm />
+          </UserLayout>
         ),
       },
 

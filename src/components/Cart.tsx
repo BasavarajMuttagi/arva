@@ -3,8 +3,10 @@ import useCoffeeStore from "../store";
 import Mug from "../assets/Mug";
 import CartItem from "./CartItem";
 import { ArrowRight } from "@phosphor-icons/react";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
+  const navigate = useNavigate();
   const { cart } = useCoffeeStore();
   return (
     <motion.div
@@ -23,6 +25,7 @@ const Cart = () => {
       )}
       {cart?.map(({ description, itemId, name, price, count }) => (
         <CartItem
+          key={itemId}
           description={description}
           itemId={itemId}
           name={name}
@@ -46,7 +49,10 @@ const Cart = () => {
               </div>
             </div>
           </div>
-          <button className="flex w-full items-center justify-center space-x-4 rounded-lg bg-deep-lagoon-blue p-3 text-xl font-semibold text-white">
+          <button
+            className="flex w-full items-center justify-center space-x-4 rounded-lg bg-deep-lagoon-blue p-3 text-xl font-semibold text-white"
+            onClick={() => navigate("/payment")}
+          >
             <div>Pay Now</div>
             <ArrowRight size={24} />
           </button>

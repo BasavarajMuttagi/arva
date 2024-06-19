@@ -12,7 +12,8 @@ import { allAddressResponse } from "./AllAddresses";
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const { setToken, setDisplayName, setAddress } = useCoffeeStore();
+  const { setToken, setDisplayName, setAddress, setSelectedAddress } =
+    useCoffeeStore();
   const [isSpin, setIsSpin] = useState(false);
 
   const {
@@ -42,6 +43,7 @@ const LoginForm = () => {
         };
         const result = (await getAllAddresses()).data as allAddressResponse[];
         setAddress(result);
+        setSelectedAddress(result[0]);
         navigate("/");
         reset();
         location.reload();

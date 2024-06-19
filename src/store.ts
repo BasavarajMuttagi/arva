@@ -22,6 +22,7 @@ type store = {
   incrementItem: (newItem: Item) => void;
   setAddress: (newAddress: allAddressResponse[]) => void;
   selectedAddress: allAddressResponse;
+  setSelectedAddress: (newAddress: allAddressResponse) => void;
 };
 
 export type Item = {

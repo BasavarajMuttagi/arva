@@ -42,7 +42,7 @@ const StripePaymentForm = () => {
   const GetStripeSessionSecret = async () => {
     try {
       const body = {
-        products: getLineItems,
+        products: getLineItems(),
         shopId: selectedStoreId,
         address: selectedAddress,
       };
