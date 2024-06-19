@@ -7,6 +7,8 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import useEcomStore, { Item } from "../store";
 import apiClient from "../axios/apiClient";
+import Loading from "./Loading";
+import Error from "./Error";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_KEY);
 
@@ -66,10 +68,10 @@ const StripePaymentForm = () => {
   });
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
   if (isError) {
-    return <div>Error: Something went wrong ,Refresh</div>;
+    return <Error />;
   }
   return (
     <div id="checkout">
