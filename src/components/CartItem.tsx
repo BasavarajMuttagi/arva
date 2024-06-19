@@ -53,7 +53,7 @@ const CartItem = (data: Item) => {
             <p className="text-sm font-semibold">₹{data.price.toFixed(2)}</p>
           </div>
           <div className="absolute -right-2 -top-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-deep-lagoon-blue text-white">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-deep-lagoon-blue text-white font-semibold text-xl">
               <div>{data.count}</div>
             </div>
           </div>
