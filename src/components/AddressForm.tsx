@@ -6,7 +6,7 @@ import { CircleNotch } from "@phosphor-icons/react";
 import { useNavigate } from "react-router-dom";
 import MyMap from "./MyMap";
 import apiClient from "../axios/apiClient";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 const AddressForm = () => {
   const navigate = useNavigate();
   const [isSpin, setIsSpin] = useState(false);
@@ -59,6 +59,9 @@ const AddressForm = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="h-fit space-y-5 p-5 text-sm font-semibold text-deep-lagoon-blue"
       >
+        <div className="py-1 text-center text-3xl font-semibold text-deep-lagoon-blue">
+          Create Address
+        </div>
         <div className="space-y-0.5">
           <div>Title</div>
           <input
@@ -111,7 +114,6 @@ const AddressForm = () => {
           <p>Submit</p>
           {isSpin && <CircleNotch size={18} className="animate-spin" />}
         </button>
-        <Toaster />
       </form>
       <MyMap getLocation={getlocation} />
     </div>

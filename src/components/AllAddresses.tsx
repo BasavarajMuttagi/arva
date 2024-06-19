@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 export type allAddressResponse = addressType & { _id: string };
 const AllAddresses = () => {
   const navigate = useNavigate();
-  const getCoffeeShops = async () => {
+  const getAllAddresses = async () => {
     const records = await apiClient.get("/address/getall");
     return records;
   };
@@ -19,7 +19,7 @@ const AllAddresses = () => {
     isError,
   } = useQuery({
     queryKey: ["addresses"],
-    queryFn: async () => (await getCoffeeShops()).data as allAddressResponse[],
+    queryFn: async () => (await getAllAddresses()).data as allAddressResponse[],
   });
 
   if (isLoading) {

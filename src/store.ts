@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
+import { allAddressResponse } from "./components/AllAddresses";
 
 const storageModule = {
   name: "coffee-shop-storage",
@@ -11,6 +12,7 @@ type store = {
   displayName: string;
   selectedStoreId: string;
   cart: Item[];
+  address: allAddressResponse[];
   addItem: (data: Item) => void;
   setToken: (newToken: string) => void;
   setDisplayName: (name: string) => void;
@@ -18,6 +20,8 @@ type store = {
   setStoreId: (newStoreId: string) => void;
   removeItem: (itemId: string) => void;
   incrementItem: (newItem: Item) => void;
+  setAddress: (newAddress: allAddressResponse[]) => void;
+  selectedAddress: allAddressResponse;
 };
 
 export type Item = {
@@ -35,6 +39,12 @@ const useCoffeeStore = create<store>()(
       displayName: "",
       cart: [],
       selectedStoreId: "",
+      selectedAddress: {} as allAddressResponse,
+      address: [] as allAddressResponse[],
+      setSelectedAddress: (newAddress: allAddressResponse) =>
+        set(() => ({ selectedAddress: newAddress })),
+      setAddress: (newAddress: allAddressResponse[]) =>
+        set(() => ({ address: newAddress })),
       setStoreId: (newStoreId) => set(() => ({ selectedStoreId: newStoreId })),
       setToken: (newToken) => set(() => ({ token: newToken })),
       setDisplayName: (name: string) => set(() => ({ displayName: name })),
@@ -61,6 +71,8 @@ const useCoffeeStore = create<store>()(
           displayName: "",
           cart: [],
           selectedStoreId: "",
+          selectedAddress: {} as allAddressResponse,
+          address: [] as allAddressResponse[],
         }));
       },
     }),

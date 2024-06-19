@@ -7,10 +7,12 @@ import { ArrowRight, CircleNotch } from "@phosphor-icons/react";
 import useCoffeeStore from "../store";
 import { AxiosResponse } from "axios";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import { allAddressResponse } from "./AllAddresses";
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const { setToken, setDisplayName } = useCoffeeStore();
+  const { setToken, setDisplayName, setAddress } = useCoffeeStore();
   const [isSpin, setIsSpin] = useState(false);
 
   const {
@@ -29,9 +31,23 @@ const LoginForm = () => {
       .then((res: AxiosResponse) => {
         setToken(res.data.token);
         setDisplayName(res.data.user.fullname);
+        return res;
+      })
+      .then(async (res: AxiosResponse) => {
+        const getAllAddresses = async () => {
+          const records = await apiClient.get("/address/getall", {
+            headers: { Authorization: `Bearer ${res.data.token}` },
+          });
+          return records;
+        };
+        const result = (await getAllAddresses()).data as allAddressResponse[];
+        setAddress(result);
         navigate("/");
         reset();
         location.reload();
+      })
+      .catch(() => {
+        toast.error("Something Went wrong");
       })
       .finally(() => {
         setIsSpin(false);
