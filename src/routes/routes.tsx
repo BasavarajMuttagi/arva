@@ -13,6 +13,7 @@ import AddressForm from "../components/AddressForm";
 import MainLayout from "../layouts/MainLayout";
 import Home from "../components/Home";
 import Favorite from "../components/Favorite";
+import Cart from "../components/Cart";
 
 const routes = createBrowserRouter([
   {
@@ -53,10 +54,10 @@ const routes = createBrowserRouter([
         ),
       },
       {
-        path: "/bookmark",
+        path: "/cart",
         element: (
           <MainLayout>
-            <div>Hi Card there</div>
+            <Cart />
           </MainLayout>
         ),
       },

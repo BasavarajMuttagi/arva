@@ -1,8 +1,14 @@
 import { useActiveTab } from "../contexts/ActiveTabContextProvider";
-import { Product } from "../types";
+import { CoffeeShopWithImages, Product } from "../types";
 import ItemCard from "./ItemCard";
 
-const FoodItems = ({ products }: { products: Product[] | undefined }) => {
+const FoodItems = ({
+  products,
+  shop,
+}: {
+  products: Product[] | undefined;
+  shop: CoffeeShopWithImages | undefined;
+}) => {
   const [activeTab] = useActiveTab();
   return (
     <>
@@ -10,11 +16,13 @@ const FoodItems = ({ products }: { products: Product[] | undefined }) => {
         ?.filter((eachProduct) => eachProduct.category === activeTab)
         .map((eachProduct) => (
           <ItemCard
+            key={eachProduct._id}
             description={eachProduct.description}
             imageUrl={""}
             name={eachProduct.name}
             price={eachProduct.price}
             itemId={eachProduct._id}
+            shop={shop}
           />
         ))}
     </>

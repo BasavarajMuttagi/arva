@@ -15,6 +15,9 @@ import FoodItems from "./FoodItems";
 import { createPortal } from "react-dom";
 import ShowShopLocation from "./ShowShopLocation";
 import { useState } from "react";
+import CartPopUp from "./CartPopUp";
+import useCoffeeStore from "../store";
+import { AnimatePresence, motion } from "framer-motion";
 
 const SwipeUpScreen = ({
   isLoading,
@@ -25,6 +28,7 @@ const SwipeUpScreen = ({
   isLoading: boolean;
   isError: boolean;
 }) => {
+  const { cart } = useCoffeeStore();
   const [activeTab, setActiveTab] = useActiveTab();
   const [showMap, setShowMap] = useState(false);
   if (isLoading) {
@@ -44,7 +48,7 @@ const SwipeUpScreen = ({
     );
   }
   return (
-    <div className="h-screen w-full space-y-10 rounded-t-3xl bg-white p-5 relative">
+    <div className="relative h-screen w-full space-y-10 rounded-t-3xl bg-white p-5">
       <div className="space-y-2 pt-10 text-deep-lagoon-blue">
         <p className="text-xl font-semibold">{shop?.name}</p>
         <div className="space-y-1">
@@ -59,7 +63,10 @@ const SwipeUpScreen = ({
           <div className="relative">
             {showMap &&
               createPortal(
-                <ShowShopLocation position={shop?.location.coordinates} close={setShowMap}/>,
+                <ShowShopLocation
+                  position={shop?.location.coordinates}
+                  close={setShowMap}
+                />,
                 document.body,
               )}
           </div>
@@ -110,8 +117,21 @@ const SwipeUpScreen = ({
         />
       </div>
       <div className="space-y-8 pb-10">
-        <FoodItems products={shop?.products} />
+        <FoodItems products={shop?.products} shop={shop} />
       </div>
+      <AnimatePresence>
+        {cart.length > 0 && (
+          <motion.div
+            className="sticky bottom-3"
+            initial={{ opacity: 0, y: "110%" }}
+            animate={{ opacity: 1, y: "0%" }}
+            transition={{ duration: 0.3 }}
+            exit={{ opacity: 0, y: "110%" }}
+          >
+            <CartPopUp />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
