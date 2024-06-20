@@ -30,6 +30,7 @@ const LoginForm = () => {
     await apiClient
       .post("/auth/login", data)
       .then((res: AxiosResponse) => {
+        toast.success("Logged in successfully");
         setToken(res.data.token);
         setDisplayName(res.data.user.fullname);
         return res;

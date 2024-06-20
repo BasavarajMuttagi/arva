@@ -5,6 +5,7 @@ import { useState } from "react";
 import { ArrowRight, CircleNotch } from "@phosphor-icons/react";
 import { userSignUpSchema, userSignUpType } from "../zod/schema";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const SignUpForm = () => {
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ const SignUpForm = () => {
     await apiClient
       .post("/auth/signup", data)
       .then(() => {
+        toast.success("Account Created!");
         reset();
       })
       .finally(() => {
