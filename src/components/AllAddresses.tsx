@@ -5,6 +5,7 @@ import { addressType } from "../zod/schema";
 import AddressCardSK from "./AddressCardSK";
 import { useNavigate } from "react-router-dom";
 import useCoffeeStore from "../store";
+import { motion } from "framer-motion";
 
 export type allAddressResponse = addressType & { _id: string };
 const AllAddresses = () => {
@@ -47,7 +48,12 @@ const AllAddresses = () => {
     setSelectedAddress(addresses[0]);
   }
   return (
-    <div className="space-y-5 py-2">
+    <motion.div
+      initial={{ opacity: 0, y: "-15%" }}
+      animate={{ opacity: 1, y: "0%" }}
+      transition={{ duration: 0.6 }}
+      className="space-y-5 py-2"
+    >
       <div className="flex items-baseline justify-between">
         <div className="text-lg font-bold text-deep-lagoon-blue">
           Saved addresses
@@ -74,7 +80,7 @@ const AllAddresses = () => {
           ),
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

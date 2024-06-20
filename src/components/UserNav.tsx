@@ -7,7 +7,7 @@ const UserNav = () => {
   return (
     <div className="flex h-[80%] flex-col justify-between py-2">
       <div className="py-1 text-center text-3xl font-semibold text-deep-lagoon-blue">
-       Hi, {displayName}
+        Hi, {displayName}
       </div>
       <ul className="space-y-2">
         <li className="rounded-md p-3 hover:bg-seafoam-100">

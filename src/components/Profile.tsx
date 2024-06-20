@@ -4,6 +4,7 @@ import Loading from "./Loading";
 import Error from "./Error";
 import ProfileForm from "./ProfileForm";
 import { UserProfileResponse } from "../types";
+import { motion } from "framer-motion";
 
 const Profile = () => {
   const getUserProfile = async () => {
@@ -28,12 +29,17 @@ const Profile = () => {
   }
 
   return (
-    <div className="h-full overflow-y-auto bg-white">
+    <motion.div
+      initial={{ opacity: 0, y: "-15%" }}
+      animate={{ opacity: 1, y: "0%" }}
+      transition={{ duration: 0.6 }}
+      className="h-full overflow-y-auto bg-white"
+    >
       <div className="py-1 text-center text-3xl font-semibold text-deep-lagoon-blue">
         Profile
       </div>
       <ProfileForm defaultValues={profile!} />
-    </div>
+    </motion.div>
   );
 };
 
