@@ -23,6 +23,7 @@ type store = {
   setAddress: (newAddress: allAddressResponse[]) => void;
   selectedAddress: allAddressResponse;
   setSelectedAddress: (newAddress: allAddressResponse) => void;
+  reset: () => void;
 };
 
 export type Item = {
@@ -70,6 +71,14 @@ const useCoffeeStore = create<store>()(
         set(() => ({
           token: "",
           displayName: "",
+          cart: [],
+          selectedStoreId: "",
+          selectedAddress: {} as allAddressResponse,
+          address: [] as allAddressResponse[],
+        }));
+      },
+      reset: () => {
+        set(() => ({
           cart: [],
           selectedStoreId: "",
           selectedAddress: {} as allAddressResponse,

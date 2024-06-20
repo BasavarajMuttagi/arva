@@ -9,6 +9,7 @@ import useEcomStore, { Item } from "../store";
 import apiClient from "../axios/apiClient";
 import Loading from "./Loading";
 import Error from "./Error";
+import toast from "react-hot-toast";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_KEY);
 
@@ -54,7 +55,9 @@ const StripePaymentForm = () => {
         body,
       );
       return response.data;
-    } catch (error) {}
+    } catch (error) {
+      toast.error("Something went wrong");
+    }
   };
 
   const [clientSecret, setClientSecret] = useState("");

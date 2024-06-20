@@ -1,12 +1,15 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useCoffeeStore from "../store";
 
 const PaymentSuccess = () => {
+  const { reset } = useCoffeeStore();
   const navigate = useNavigate();
   const [count, setCount] = useState(5);
 
   useEffect(() => {
+    reset();
     const interval = setInterval(() => {
       setCount((prevCount) => prevCount - 1);
     }, 1000);
