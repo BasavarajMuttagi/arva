@@ -114,7 +114,9 @@ const AddressForm = () => {
           {isSpin && <CircleNotch size={18} className="animate-spin" />}
         </button>
       </form>
-      <MyMap getLocation={getlocation} />
+      <div className="h-96">
+        <MyMap getLocation={getlocation} />
+      </div>
     </div>
   );
 };

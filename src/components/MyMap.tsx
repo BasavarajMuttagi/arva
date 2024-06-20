@@ -91,7 +91,7 @@ export default function MyMap({
   }, [marker]);
 
   return (
-    <div className="map-wrap">
+    <div className="map-wrap z-0">
       <div ref={mapContainer} className="map h-52" />
     </div>
   );
