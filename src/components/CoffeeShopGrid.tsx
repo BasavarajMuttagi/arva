@@ -5,23 +5,29 @@ import CoffeeShopCard from "./CoffeeShopCard";
 import CoffeeShopSK from "./CoffeeShopSK";
 import useGeoLocation from "../hooks/useGeoLocation";
 import { CoffeeShopData } from "../types";
+import { useContext, useState } from "react";
+import { SearchContext } from "./Home";
 
 const CoffeeShopGrid = () => {
+  const [value] = useContext(SearchContext);
   const { position, error } = useGeoLocation();
+  const [filteredCoffeeShops, setFilteredCoffeeShops] = useState<
+    CoffeeShopData[]
+  >([]);
   const getCoffeeShops = async () => {
-    const records = await apiClient.post("/shop/getshops", {
-      long: position?.longitude,
-      lat: position?.latitude,
-      max_distance: 2000,
-    });
+    const records = await apiClient
+      .post("/shop/getshops", {
+        long: position?.longitude,
+        lat: position?.latitude,
+      })
+      .then((res) => {
+        setFilteredCoffeeShops(res.data);
+        return res;
+      });
     return records;
   };
 
-  const {
-    data: shops,
-    isLoading,
-    isError,
-  } = useQuery({
+  const { isLoading, isError } = useQuery({
     queryKey: ["featured", position, error],
     queryFn: async () => (await getCoffeeShops()).data as CoffeeShopData[],
   });
@@ -37,29 +43,35 @@ const CoffeeShopGrid = () => {
 
   if (isError) {
     return (
-      <div className="font-medium text-center text-sm text-red-300">
+      <div className="text-center text-sm font-medium text-red-300">
         Error fetching coffee shops
       </div>
     );
   }
   return (
     <div className="grid grid-cols-2 gap-4 pb-28">
-      {shops?.length == 0 && (
+      {filteredCoffeeShops?.length == 0 && (
         <div className="col-span-2 flex items-center space-x-2 place-self-center text-sm font-semibold text-[#A4ADAE]">
           No Shops Found
         </div>
       )}
-      {shops?.map(({ _id, distance, name, isFavorite }) => (
-        <CoffeeShopCard
-          key={_id}
-          distance={distance}
-          name={name}
-          rating={4}
-          reviewsCount={4}
-          shopId={_id}
-          isFavorite={isFavorite}
-        />
-      ))}
+      {filteredCoffeeShops
+        ?.filter((eachObject) =>
+          eachObject.name.toLowerCase().includes(value.toLowerCase()),
+        )
+        .sort((a, b) => a.distance - b.distance)
+        .map(({ _id, distance, name, isFavorite }) => (
+          <CoffeeShopCard
+            key={_id}
+            distance={distance}
+            name={name}
+            rating={4}
+            reviewsCount={4}
+            shopId={_id}
+            isFavorite={isFavorite}
+          />
+        ))}
+
       <div className="col-span-2 flex items-center space-x-2 place-self-center text-sm font-semibold text-[#A4ADAE]">
         <p>You Have Reached The End!</p>
         <Mug className="h-10 w-10" />

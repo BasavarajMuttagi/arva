@@ -1,38 +1,37 @@
 import { MagnifyingGlass, X } from "@phosphor-icons/react";
 import clsx from "clsx";
-import { HTMLAttributes, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
+import { SearchContext } from "./Home";
 
-const SearchBar = (
-  props: HTMLAttributes<HTMLInputElement> & {
-    onChange: (text: string) => {};
-    defaultValue: string;
-  }
-) => {
-  const { className, defaultValue } = props;
-  const [searchTerm, setSearchTerm] = useState(defaultValue);
+const SearchBar = () => {
+  const [value, setValue] = useContext(SearchContext);
+  const [searchTerm, setSearchTerm] = useState(value);
 
+  useEffect(() => {
+    setValue(searchTerm);
+  }, [searchTerm]);
   return (
-    <div className="relative text-[#A4ADAE] shrink">
+    <div className="relative shrink text-[#A4ADAE]">
       <input
-        {...props}
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         type="text"
         placeholder="Search"
         className={twMerge(
           clsx(
-            "bg-seafoam-100 py-4 px-10 w-full rounded-xl outline-none text-gray-500 text-base",
-            className
-          )
+            "w-full rounded-xl bg-seafoam-100 px-10 py-4 text-base text-gray-500 outline-none",
+          ),
         )}
       />
-      <MagnifyingGlass size={24} className="absolute top-3.5 left-2" />
+      <MagnifyingGlass size={24} className="absolute left-2 top-3.5" />
       <X
         size={24}
         className={twMerge(
-          "absolute top-3.5 right-2",
-          searchTerm.length > 0 ? "text-gray-600 cursor-pointer" : "text-seafoam-100"
+          "absolute right-2 top-3.5",
+          searchTerm.length > 0
+            ? "cursor-pointer text-gray-600"
+            : "text-seafoam-100",
         )}
         onClick={() => setSearchTerm("")}
       />
