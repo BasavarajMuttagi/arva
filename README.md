@@ -1,30 +1,52 @@
-# React + TypeScript + Vite
+# Coffee Shop Finder - (Optimized only for mobile)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a web application optimized for mobile viewing for a coffee shop finder app. It provides users with the convenience of browsing the menu, adding/removing items from their cart,  and completing the checkout process seamlessly.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### User Authentication
+- **Signup/Login:** Users can create an account or log in with existing credentials to access the platform.
 
-## Expanding the ESLint configuration
+### Home Page
+- **Featured shops and search bar:** Featured shops with distance , search bar to search for amazing shops.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Ordering
+- **Add/Remove Items:** Users can add items to their cart or remove them as needed.
+- **Modify Cart Items:** Users can modify the quantity or remove items from their cart.
 
-- Configure the top-level `parserOptions` property like this:
+### Checkout
+- **Address Info:** User provided address information shown.
+- **Payment Methods:** Stripe Payment Integration
+- **Order Confirmation:** Confirmation screen displaying the successful payment.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+### Order Management
+- **Order History:** View past orders with details such as order items, total amount.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+### Shop Information
+- **About Page:** Information about the Shop ,address, cuisines, Map integration.
+
+### User Interaction
+- **Logout:** Option to log out and securely end the session.
+- **Profile Section:** View details saved and modify when needed.
+- **Address:** View details saved and modify when needed.
+
+
+## Technologies Used
+- **Frontend:** React using Typescript, Tailwind, Zod, Zustand, hookform, @tanstack/react-query, axios
+- **Backend:** Node.js, Express.js using Typescript, Zod, Mongo DB, Stripe Payment Integration.
+- **Database:** MongoDB
+- **Deployment:** Project deployed on Vercel
+
+
+## How to Run
+1. Clone this repository using `git clone [repository_url]`
+2. Install dependencies using `npm install`.
+4. Run the server using `npm run dev`.
+
+## Contributing
+Contributions are welcome! Please feel free to open issues or submit pull requests.
+
+## License
+This project is licensed under the MIT License.
+
