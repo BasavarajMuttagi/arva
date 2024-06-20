@@ -5,12 +5,14 @@ import CoffeeShopSK from "./CoffeeShopSK";
 import CoffeeShopCard from "./CoffeeShopCard";
 import Mug from "../assets/Mug";
 import { motion } from "framer-motion";
+import useGeoLocation from "../hooks/useGeoLocation";
 
 const Favorite = () => {
+  const { position } = useGeoLocation();
   const getCoffeeLikedShops = async () => {
     const records = await apiClient.post("/shop/getallfavoriteshops", {
-      long: 75.72271730435826,
-      lat: 16.811527275850516,
+      long: position.longitude,
+      lat: position.latitude,
     });
     return records;
   };
