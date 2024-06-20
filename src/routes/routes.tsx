@@ -83,7 +83,12 @@ const routes = createBrowserRouter([
       },
       {
         path: "/user",
-        element: <User />,
+        element: (
+          <MainLayout>
+            {" "}
+            <User />
+          </MainLayout>
+        ),
         children: [
           {
             index: true,
