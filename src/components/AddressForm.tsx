@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import MyMap from "./MyMap";
 import apiClient from "../axios/apiClient";
 import toast from "react-hot-toast";
+import useCoffeeStore from "../store";
 const AddressForm = () => {
   const navigate = useNavigate();
   const [isSpin, setIsSpin] = useState(false);
@@ -22,7 +23,6 @@ const AddressForm = () => {
   });
 
   const onSubmit = async (data: addressType) => {
-    console.log(data);
     setIsSpin(true);
 
     await apiClient

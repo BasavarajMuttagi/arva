@@ -42,8 +42,11 @@ const LoginForm = () => {
           return records;
         };
         const result = (await getAllAddresses()).data as allAddressResponse[];
-        setAddress(result);
-        setSelectedAddress(result[0]);
+
+        if (result.length) {
+          setSelectedAddress(result[0]);
+          setAddress(result);
+        }
         navigate("/");
         reset();
         location.reload();

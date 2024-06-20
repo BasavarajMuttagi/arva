@@ -4,9 +4,12 @@ import AddressCard from "./AddressCard";
 import { addressType } from "../zod/schema";
 import AddressCardSK from "./AddressCardSK";
 import { useNavigate } from "react-router-dom";
+import useCoffeeStore from "../store";
 
 export type allAddressResponse = addressType & { _id: string };
 const AllAddresses = () => {
+  const { selectedAddress, setSelectedAddress } = useCoffeeStore();
+
   const navigate = useNavigate();
   const getAllAddresses = async () => {
     const records = await apiClient.get("/address/getall");
@@ -38,6 +41,10 @@ const AllAddresses = () => {
         Error fetching coffee shops
       </div>
     );
+  }
+
+  if (!selectedAddress._id && addresses?.length) {
+    setSelectedAddress(addresses[0]);
   }
   return (
     <div className="space-y-5 py-2">
