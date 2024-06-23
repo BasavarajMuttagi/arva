@@ -65,7 +65,7 @@ const AllAddresses = () => {
           Add
         </button>
       </div>
-      <div className="space-y-2 overflow-y-auto">
+      <div className="space-y-2 overflow-y-auto pb-40">
         {addresses?.map(
           ({ title, address, phone, pincode, location, _id }, index) => (
             <AddressCard

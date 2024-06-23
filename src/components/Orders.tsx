@@ -47,7 +47,7 @@ const Orders = () => {
       className="space-y-5 py-2"
     >
       <div className="text-lg font-bold text-deep-lagoon-blue">Orders</div>
-      <div className="space-y-2 overflow-y-auto">
+      <div className="space-y-2 overflow-y-auto pb-40">
         {orders?.data?.map((order) => <OrderCard key={order._id} {...order} />)}
       </div>
     </motion.div>
