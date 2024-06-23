@@ -1,13 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import apiClient from "../axios/apiClient";
 import { CoffeeShopData } from "../types";
-import CoffeeShopSK from "./CoffeeShopSK";
-import CoffeeShopCard from "./CoffeeShopCard";
 import Mug from "../assets/Mug";
 import { motion } from "framer-motion";
 import useGeoLocation from "../hooks/useGeoLocation";
+import CoffeeShopCard from "../components/CoffeeShopCard";
+import CoffeeShopSK from "../components/CoffeeShopSK";
 
-const Favorite = () => {
+const FavoriteLayout = () => {
   const { position } = useGeoLocation();
   const getCoffeeLikedShops = async () => {
     const records = await apiClient.post("/shop/getallfavoriteshops", {
@@ -88,4 +88,4 @@ const Favorite = () => {
   );
 };
 
-export default Favorite;
+export default FavoriteLayout;

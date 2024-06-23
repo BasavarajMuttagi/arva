@@ -33,7 +33,7 @@ const Profile = () => {
       initial={{ opacity: 0, y: "-15%" }}
       animate={{ opacity: 1, y: "0%" }}
       transition={{ duration: 0.6 }}
-      className="h-full overflow-y-auto bg-white"
+      className="h-full overflow-y-auto bg-white pb-40"
     >
       <div className="py-1 text-center text-3xl font-semibold text-deep-lagoon-blue">
         Profile

@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
 import useCoffeeStore from "../store";
 import Mug from "../assets/Mug";
-import CartItem from "./CartItem";
 import { ArrowRight } from "@phosphor-icons/react";
 import { useNavigate } from "react-router-dom";
+import CartItem from "../components/CartItem";
 
-const Cart = () => {
+const CartLayout = () => {
   const navigate = useNavigate();
   const { cart, selectedAddress } = useCoffeeStore();
   return (
@@ -106,4 +106,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default CartLayout;

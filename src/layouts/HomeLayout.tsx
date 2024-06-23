@@ -9,7 +9,7 @@ import { createContext, SetStateAction, useState, Dispatch } from "react";
 export const SearchContext = createContext<
   [string, Dispatch<SetStateAction<string>>]
 >(["", () => {}]);
-const Home = () => {
+const HomeLayout = () => {
   const [showFilters, setShowFilters] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   console.log(searchTerm);
@@ -60,4 +60,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomeLayout;

@@ -1,23 +1,22 @@
 import { createBrowserRouter } from "react-router-dom";
 import Cafe from "../pages/Cafe";
-import User from "../pages/User";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import Public from "./Public";
 import Private from "./Private";
-import UserNav from "../components/UserNav";
-import UserLayout from "../layouts/UserLayout";
-import Profile from "../components/Profile";
-import AllAddresses from "../components/AllAddresses";
-import AddressForm from "../components/AddressForm";
 import MainLayout from "../layouts/MainLayout";
-import Home from "../components/Home";
-import Favorite from "../components/Favorite";
-import Cart from "../components/Cart";
-import StripePaymentForm from "../components/StripePaymentForm";
-import Orders from "../components/Orders";
-import PaymentSuccess from "../components/PaymentSuccess";
-import PaymentFailed from "../components/PaymentFailed";
+import PaymentSuccess from "../pages/PaymentSuccess";
+import PaymentFailure from "../pages/PaymentFailure";
+import Home from "../pages/Home";
+import UserProfileMenu from "../pages/UserProfileMenu";
+import UserProfile from "../pages/UserProfile";
+import Payment from "../pages/Payment";
+import Favorite from "../pages/Favorite";
+import Cart from "../pages/Cart";
+import User from "./User";
+import UserAddress from "../pages/UserAddress";
+import UserCreateAddress from "../pages/UserCreateAddress";
+import UserOrders from "../pages/UserOrders";
 
 const routes = createBrowserRouter([
   {
@@ -38,11 +37,7 @@ const routes = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: (
-          <MainLayout>
-            <Home />
-          </MainLayout>
-        ),
+        element: <Home />,
       },
       {
         path: "/success",
@@ -50,15 +45,11 @@ const routes = createBrowserRouter([
       },
       {
         path: "/failure",
-        element: <PaymentFailed />,
+        element: <PaymentFailure />,
       },
       {
         path: "payment",
-        element: (
-          <UserLayout>
-            <StripePaymentForm />
-          </UserLayout>
-        ),
+        element: <Payment />,
       },
 
       {
@@ -67,68 +58,39 @@ const routes = createBrowserRouter([
       },
       {
         path: "/favorite",
-        element: (
-          <MainLayout>
-            <Favorite />
-          </MainLayout>
-        ),
+        element: <Favorite />,
       },
       {
         path: "/cart",
-        element: (
-          <MainLayout>
-            <Cart />
-          </MainLayout>
-        ),
+        element: <Cart />,
       },
       {
         path: "/user",
         element: (
           <MainLayout>
-            {" "}
             <User />
           </MainLayout>
         ),
         children: [
           {
             index: true,
-            element: (
-              <UserLayout>
-                <UserNav />
-              </UserLayout>
-            ),
+            element: <UserProfileMenu />,
           },
           {
             path: "profile",
-            element: (
-              <UserLayout>
-                <Profile />
-              </UserLayout>
-            ),
+            element: <UserProfile />,
           },
           {
             path: "address",
-            element: (
-              <UserLayout>
-                <AllAddresses />
-              </UserLayout>
-            ),
+            element: <UserAddress />,
           },
           {
             path: "address/create",
-            element: (
-              <UserLayout>
-                <AddressForm />
-              </UserLayout>
-            ),
+            element: <UserCreateAddress />,
           },
           {
             path: "orders",
-            element: (
-              <UserLayout>
-                <Orders />
-              </UserLayout>
-            ),
+            element: <UserOrders />,
           },
         ],
       },
