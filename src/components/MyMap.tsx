@@ -69,15 +69,13 @@ export default function MyMap({
   useEffect(() => {
     if (!marker) return;
     async function getLocationData() {
-      const results = await maptilersdk.geocoding.reverse([
+      await maptilersdk.geocoding.reverse([
         currentPosition[0],
         currentPosition[1],
       ]);
-      console.log(results.attribution);
     }
     const handleDragEnd = () => {
       const { lng, lat } = marker.getLngLat();
-      console.log({ lng, lat });
       setCurrentPosition([lng, lat]);
       getLocation([lng, lat]);
       getLocationData();

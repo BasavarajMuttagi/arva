@@ -12,7 +12,7 @@ export const SearchContext = createContext<
 const HomeLayout = () => {
   const [showFilters, setShowFilters] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  console.log(searchTerm);
+
   return (
     <SearchContext.Provider value={[searchTerm, setSearchTerm]}>
       <div className="h-full space-y-5 bg-white p-5">

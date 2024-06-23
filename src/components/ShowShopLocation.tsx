@@ -11,7 +11,6 @@ export default function ShowShopLocation({
   position: [number, number] | undefined | any;
   close: (data: boolean) => void;
 }) {
-  console.log(position);
   const [currentPosition] = useState<[number, number]>(position);
   const mapContainer = useRef(null);
   const map = useRef<any>(null);
