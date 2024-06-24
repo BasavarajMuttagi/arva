@@ -40,13 +40,6 @@ export type UserProfileResponse = {
   email: string;
 };
 
-
-
-
-
-
-
-
 type Metadata = {
   id: string;
 };
@@ -85,6 +78,7 @@ export type OrderData = {
   _id: string;
   shopId: ShopInfo;
   items: Item[];
+  paymentStatus: "Processing" | "Success" | "Failure";
 };
 
 export type Orders = {

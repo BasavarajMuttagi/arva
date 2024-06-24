@@ -1,11 +1,24 @@
+import { twMerge } from "tailwind-merge";
 import { OrderData } from "../types";
 
 const OrderCard = (order: OrderData) => {
   return (
     <div className="h-fit w-full rounded p-2 text-sm font-medium text-slate-500 shadow">
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center justify-between">
         <div className="text-lg font-bold text-deep-lagoon-blue">
           {order.address.title}
+        </div>
+        <div
+          className={twMerge(
+            "text-grey-300",
+            order.paymentStatus == "Processing"
+              ? "text-orange-300"
+              : order.paymentStatus == "Failure"
+                ? "text-red-300"
+                : "text-green-300",
+          )}
+        >
+          {order.paymentStatus}
         </div>
       </div>
       <div className="flex items-center space-x-2">
