@@ -31,7 +31,7 @@ export default function MyMap({
 
     map.current.on("load", async function () {
       const geojson = await maptilersdk.data.get(
-        `a8891c4f-3ca7-4374-8f5c-fc8776691621`,
+        `eea7a894-2c0b-4f8f-86c5-294b577a44f4`,
       );
       map.current.addSource("rio_cats", {
         type: "geojson",

@@ -37,7 +37,7 @@ const AddressForm = () => {
       .catch(() => {
         setIsSpin(false);
         toast.error(
-          "It looks like you are out of the serviceable area, please move the marker on the map if location taken was wrong, as of now we only serve in Vijayapura, Karnataka, India",
+          "It looks like you are out of the serviceable area, please move the marker on the map if location taken was wrong, as of now we only serve in Bengaluru, Karnataka, India",
           {
             duration: 6000,
           },
