@@ -32,6 +32,7 @@ export type Item = {
   price: number;
   itemId: string;
   count: number;
+  imageUrl: string;
 };
 
 const useCoffeeStore = create<store>()(

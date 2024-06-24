@@ -18,7 +18,7 @@ const FoodItems = ({
           <ItemCard
             key={eachProduct._id}
             description={eachProduct.description}
-            imageUrl={""}
+            imageUrl={eachProduct.imageUrl}
             name={eachProduct.name}
             price={eachProduct.price}
             itemId={eachProduct._id}

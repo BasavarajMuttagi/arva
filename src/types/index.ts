@@ -27,6 +27,7 @@ export type Product = {
   description: string;
   dietType: "VEG" | "NON-VEG";
   category: "COFFEE" | "DRINKS" | "FOOD";
+  imageUrl: string;
 };
 
 type Location = {

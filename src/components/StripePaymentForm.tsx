@@ -6,7 +6,7 @@ import {
 } from "@stripe/react-stripe-js";
 import { useQuery } from "@tanstack/react-query";
 import useEcomStore, { Item } from "../store";
-import apiClient from "../axios/apiClient";
+import apiClient, { cloudFrontBaseUrl } from "../axios/apiClient";
 import Loading from "./Loading";
 import Error from "./Error";
 import toast from "react-hot-toast";
@@ -25,9 +25,7 @@ const StripePaymentForm = () => {
           product_data: {
             name: eachItem.name,
             description: eachItem.description,
-            images: [
-              "https://t4.ftcdn.net/jpg/05/14/51/79/360_F_514517927_dXLi1DauUmrCaE3AkElsVgJ1jaYZMcSA.jpg",
-            ],
+            images: [`${cloudFrontBaseUrl}${eachItem.imageUrl}`],
             metadata: {
               id: eachItem.itemId,
             },

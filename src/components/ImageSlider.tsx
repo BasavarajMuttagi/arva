@@ -3,6 +3,7 @@ import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import Skeleton from "react-loading-skeleton";
+import { cloudFrontBaseUrl } from "../axios/apiClient";
 const ImageSlider = ({
   isLoading,
   images,
@@ -18,8 +19,8 @@ const ImageSlider = ({
 
   if (isError) {
     return (
-      <div className="h-full bg-red-300 flex justify-center items-center">
-        <p className="text-2xl text-wrap font-bold text-slate-800">
+      <div className="flex h-full items-center justify-center bg-red-300">
+        <p className="text-wrap text-2xl font-bold text-slate-800">
           Something Went Wrong !
         </p>
       </div>
@@ -27,8 +28,8 @@ const ImageSlider = ({
   }
   if (images.length == 0) {
     return (
-      <div className="h-full bg-sky-300 flex justify-center items-center">
-        <p className="text-2xl text-wrap font-bold text-slate-800">
+      <div className="flex h-full items-center justify-center bg-sky-300">
+        <p className="text-wrap text-2xl font-bold text-slate-800">
           Images Coming Soon !
         </p>
       </div>
@@ -44,7 +45,10 @@ const ImageSlider = ({
     >
       {images.map((url, index) => (
         <SwiperSlide key={index}>
-          <img src={url} className="h-full w-full object-fill" />
+          <img
+            src={`${cloudFrontBaseUrl}${url}`}
+            className="h-full w-full object-fill"
+          />
         </SwiperSlide>
       ))}
     </Swiper>

@@ -23,7 +23,7 @@ const CartLayout = () => {
           Cart Empty
         </div>
       )}
-      {cart?.map(({ description, itemId, name, price, count }) => (
+      {cart?.map(({ description, itemId, name, price, count, imageUrl }) => (
         <CartItem
           key={itemId}
           description={description}
@@ -31,6 +31,7 @@ const CartLayout = () => {
           name={name}
           price={price}
           count={count}
+          imageUrl={imageUrl}
         />
       ))}
       {cart?.length !== 0 && (

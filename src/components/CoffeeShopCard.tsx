@@ -1,6 +1,7 @@
 import { Star } from "@phosphor-icons/react";
 import { useNavigate } from "react-router-dom";
 import { RoundedBackgroundHeart } from "./RoundedBackgroundHeart";
+import { cloudFrontBaseUrl } from "../axios/apiClient";
 
 const CoffeeShopCard = ({
   name,
@@ -9,6 +10,7 @@ const CoffeeShopCard = ({
   distance,
   shopId,
   isFavorite = false,
+  images
 }: {
   name: string;
   rating: number;
@@ -16,13 +18,14 @@ const CoffeeShopCard = ({
   distance: number;
   shopId: string;
   isFavorite: boolean;
+  images :string[]
 }) => {
   const navigate = useNavigate();
   return (
     <div onClick={() => navigate(`/shop/${shopId}`)} className="cursor-pointer">
       <div className="relative">
         <img
-          src="https://media.istockphoto.com/id/664313320/photo/espresso-coffee-cup-with-beans-on-vintage-table.jpg?s=612x612&w=0&k=20&c=kaF8P4KuAlVhAm9zNcq5DxSimOv8w3yVQynS4dwPBHc="
+          src={`${cloudFrontBaseUrl}${images[0]}`}
           alt="coffee"
           className="aspect-[9/16] h-fit max-h-48 w-full rounded-xl object-cover object-center"
         />

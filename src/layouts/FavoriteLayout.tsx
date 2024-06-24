@@ -67,7 +67,7 @@ const FavoriteLayout = () => {
           No Shops Found
         </div>
       )}
-      {likedShops?.map(({ _id, distance, name, isFavorite }) => (
+      {likedShops?.map(({ _id, distance, name, isFavorite, images }) => (
         <CoffeeShopCard
           key={_id}
           distance={distance}
@@ -76,6 +76,7 @@ const FavoriteLayout = () => {
           reviewsCount={4}
           shopId={_id}
           isFavorite={isFavorite}
+          images={images}
         />
       ))}
       {likedShops?.length !== 0 && (
