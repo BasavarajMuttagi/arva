@@ -5,16 +5,14 @@ import ProfilePicture from "../components/ProfilePicture";
 import CoffeeShopGrid from "../components/CoffeeShopGrid";
 import Filters from "../components/Filters";
 import { motion } from "framer-motion";
-import { createContext, SetStateAction, useState, Dispatch } from "react";
-export const SearchContext = createContext<
-  [string, Dispatch<SetStateAction<string>>]
->(["", () => {}]);
+import { useState } from "react";
+import SearchContextProvider from "../contexts/SearchContextProvider";
+
 const HomeLayout = () => {
   const [showFilters, setShowFilters] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
 
   return (
-    <SearchContext.Provider value={[searchTerm, setSearchTerm]}>
+    <SearchContextProvider>
       <div className="h-full space-y-5 bg-white p-5">
         {/* top */}
         <motion.div
@@ -56,7 +54,7 @@ const HomeLayout = () => {
           <CoffeeShopGrid />
         </motion.div>
       </div>
-    </SearchContext.Provider>
+    </SearchContextProvider>
   );
 };
 

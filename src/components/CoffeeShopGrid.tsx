@@ -5,11 +5,12 @@ import CoffeeShopCard from "./CoffeeShopCard";
 import CoffeeShopSK from "./CoffeeShopSK";
 import useGeoLocation from "../hooks/useGeoLocation";
 import { CoffeeShopData } from "../types";
-import { useContext, useState } from "react";
-import { SearchContext } from "./Home";
+import { useState } from "react";
+import { useSearch } from "../contexts/SearchContextProvider";
 
 const CoffeeShopGrid = () => {
-  const [value] = useContext(SearchContext);
+  const [value] = useSearch();
+  console.log(value);
   const { position, error } = useGeoLocation();
   const [filteredCoffeeShops, setFilteredCoffeeShops] = useState<
     CoffeeShopData[]

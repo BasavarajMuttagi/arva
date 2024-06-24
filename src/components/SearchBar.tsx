@@ -1,15 +1,16 @@
 import { MagnifyingGlass, X } from "@phosphor-icons/react";
 import clsx from "clsx";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
-import { SearchContext } from "./Home";
+import { useSearch } from "../contexts/SearchContextProvider";
 
 const SearchBar = () => {
-  const [value, setValue] = useContext(SearchContext);
+  const [value, setValue] = useSearch();
   const [searchTerm, setSearchTerm] = useState(value);
 
   useEffect(() => {
     setValue(searchTerm);
+    console.log(searchTerm);
   }, [searchTerm]);
   return (
     <div className="relative shrink text-[#A4ADAE]">
