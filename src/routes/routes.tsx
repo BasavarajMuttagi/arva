@@ -16,6 +16,7 @@ import User from "./User";
 import UserAddress from "../pages/UserAddress";
 import UserCreateAddress from "../pages/UserCreateAddress";
 import UserOrders from "../pages/UserOrders";
+import PageNotFound from "../pages/PageNotFound";
 
 const routes = createBrowserRouter([
   {
@@ -90,6 +91,10 @@ const routes = createBrowserRouter([
         ],
       },
     ],
+  },
+  {
+    path: "*",
+    element: <PageNotFound />,
   },
 ]);
 export default routes;
