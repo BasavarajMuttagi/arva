@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import * as maptilersdk from "@maptiler/sdk";
 import "@maptiler/sdk/dist/maptiler-sdk.css";
-import "./map.css";
+import "./../map.css";
 import { XCircle } from "@phosphor-icons/react";
 
 export default function ShowShopLocation({

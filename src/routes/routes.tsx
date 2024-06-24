@@ -6,7 +6,6 @@ import Public from "./Public";
 import Private from "./Private";
 import MainLayout from "../layouts/MainLayout";
 import PaymentSuccess from "../pages/PaymentSuccess";
-import PaymentFailure from "../pages/PaymentFailure";
 import Home from "../pages/Home";
 import UserProfileMenu from "../pages/UserProfileMenu";
 import UserProfile from "../pages/UserProfile";
@@ -40,12 +39,8 @@ const routes = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/success",
+        path: "/return",
         element: <PaymentSuccess />,
-      },
-      {
-        path: "/failure",
-        element: <PaymentFailure />,
       },
       {
         path: "payment",
