@@ -7,14 +7,31 @@ import useGeoLocation from "../hooks/useGeoLocation";
 import { CoffeeShopData } from "../types";
 import { useState } from "react";
 import { useSearch } from "../contexts/SearchContextProvider";
+import { activeSortType, useSort } from "../contexts/SortContextProvider";
 
 const CoffeeShopGrid = () => {
   const [value] = useSearch();
-  console.log(value);
+  const [sort] = useSort();
   const { position, error } = useGeoLocation();
   const [filteredCoffeeShops, setFilteredCoffeeShops] = useState<
     CoffeeShopData[]
   >([]);
+
+  function sortCoffeeShops(
+    coffeeShops: CoffeeShopData[],
+    preference: activeSortType,
+  ) {
+    if (preference === "Distance") {
+      // Sort by distance in ascending order
+      return coffeeShops.sort((a, b) => a.distance - b.distance);
+    } else if (preference === "Rating") {
+      // Sort by rating in descending order
+      return coffeeShops.sort((a, b) => b.rating - a.rating);
+    } else {
+      // Default: return unsorted array
+      return coffeeShops;
+    }
+  }
   const getCoffeeShops = async () => {
     const records = await apiClient
       .post("/shop/getshops", {
@@ -56,11 +73,10 @@ const CoffeeShopGrid = () => {
           No Shops Found
         </div>
       )}
-      {filteredCoffeeShops
-        ?.filter((eachObject) =>
+      {sortCoffeeShops(filteredCoffeeShops, sort)
+        .filter((eachObject) =>
           eachObject.name.toLowerCase().includes(value.toLowerCase()),
         )
-        .sort((a, b) => a.distance - b.distance)
         .map(({ _id, distance, name, isFavorite, images, reviews, rating }) => (
           <CoffeeShopCard
             key={_id}

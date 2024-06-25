@@ -1,30 +1,24 @@
 import { CaretDown, Check } from "@phosphor-icons/react";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useSort } from "../contexts/SortContextProvider";
 
-const DropDown = ({
-  onChange,
-  value,
-}: {
-  onChange: (data: string) => void;
-  value: "Rating" | "Distance";
-}) => {
-  const [selected, setSelected] = useState<"Rating" | "Distance">(value);
+const DropDown = () => {
+  const [sort, setSort] = useSort();
   const [show, setShow] = useState(false);
   useEffect(() => {
-    onChange(selected);
     setShow(false);
-  }, [selected]);
+  }, [sort]);
   return (
     <div className="relative">
       <div
         className="flex w-32 items-center justify-between rounded-lg border px-3 py-[2px] text-[17px] font-semibold text-gray-600"
         onClick={() => setShow((prev) => !prev)}
       >
-        <p>{selected}</p>
+        <p>{sort}</p>
         <CaretDown size={16} />
       </div>
       <div className="absolute left-0 top-10 z-50 shadow">
-        {show && <Options setSelected={setSelected} selected={selected} />}
+        {show && <Options setSelected={setSort} selected={sort} />}
       </div>
     </div>
   );
