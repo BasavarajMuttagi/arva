@@ -61,13 +61,13 @@ const CoffeeShopGrid = () => {
           eachObject.name.toLowerCase().includes(value.toLowerCase()),
         )
         .sort((a, b) => a.distance - b.distance)
-        .map(({ _id, distance, name, isFavorite, images }) => (
+        .map(({ _id, distance, name, isFavorite, images, reviews, rating }) => (
           <CoffeeShopCard
             key={_id}
             distance={distance}
             name={name}
-            rating={4}
-            reviewsCount={4}
+            rating={rating}
+            reviews={reviews}
             shopId={_id}
             isFavorite={isFavorite}
             images={images}

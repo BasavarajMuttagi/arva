@@ -67,18 +67,20 @@ const FavoriteLayout = () => {
           No Shops Found
         </div>
       )}
-      {likedShops?.map(({ _id, distance, name, isFavorite, images }) => (
-        <CoffeeShopCard
-          key={_id}
-          distance={distance}
-          name={name}
-          rating={4}
-          reviewsCount={4}
-          shopId={_id}
-          isFavorite={isFavorite}
-          images={images}
-        />
-      ))}
+      {likedShops?.map(
+        ({ _id, distance, name, isFavorite, images, rating, reviews }) => (
+          <CoffeeShopCard
+            key={_id}
+            distance={distance}
+            name={name}
+            rating={rating}
+            reviews={reviews}
+            shopId={_id}
+            isFavorite={isFavorite}
+            images={images}
+          />
+        ),
+      )}
       {likedShops?.length !== 0 && (
         <div className="col-span-2 flex items-center space-x-2 place-self-center text-sm font-semibold text-[#A4ADAE]">
           <p>You Have Reached The End!</p>

@@ -6,6 +6,8 @@ export type CoffeeShopData = {
   distance: number;
   isFavorite: boolean;
   isBookmarked: boolean;
+  reviews: number,
+  rating: number,
 };
 
 export type CoffeeShopWithImages = {
@@ -14,6 +16,8 @@ export type CoffeeShopWithImages = {
   address: string;
   images: string[];
   products: Product[];
+  reviews: number,
+  rating: number,
   location: {
     type: "Point";
     coordinates: [number, number];

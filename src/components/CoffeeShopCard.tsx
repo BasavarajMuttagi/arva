@@ -6,19 +6,19 @@ import { cloudFrontBaseUrl } from "../axios/apiClient";
 const CoffeeShopCard = ({
   name,
   rating,
-  reviewsCount = 4,
+  reviews,
   distance,
   shopId,
   isFavorite = false,
-  images
+  images,
 }: {
   name: string;
   rating: number;
-  reviewsCount: number;
+  reviews: number;
   distance: number;
   shopId: string;
   isFavorite: boolean;
-  images :string[]
+  images: string[];
 }) => {
   const navigate = useNavigate();
   return (
@@ -39,7 +39,7 @@ const CoffeeShopCard = ({
           <Star size={16} weight="fill" className="text-gold" />
           <div className="flex items-end space-x-2 text-sm font-semibold">
             <p>{rating}</p>
-            <p className="text-disabled">{`${reviewsCount} reviews`}</p>
+            <p className="text-disabled">{`${reviews} reviews`}</p>
           </div>
         </div>
         <p className="text-sm font-semibold">

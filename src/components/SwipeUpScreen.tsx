@@ -55,8 +55,8 @@ const SwipeUpScreen = ({
           <div className="flex items-end space-x-1">
             <Star size={16} weight="fill" className="text-gold" />
             <div className="flex items-end space-x-2 text-sm font-semibold">
-              <p>{4.5}</p>
-              <p className="text-disabled">{`${429} reviews`}</p>
+              <p>{shop?.rating}</p>
+              <p className="text-disabled">{`${shop?.reviews} reviews`}</p>
             </div>
           </div>
           <p className="text-sm font-semibold">{shop?.address}</p>
