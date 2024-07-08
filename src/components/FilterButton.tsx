@@ -5,7 +5,7 @@ const FilterButton = (props: HTMLAttributes<HTMLDivElement>) => {
   return (
     <div
       {...props}
-      className="p-4 bg-deep-lagoon-blue text-white rounded-2xl w-fit"
+      className="w-fit rounded-2xl bg-deep-lagoon-blue p-4 text-white"
     >
       <SlidersHorizontal size={24} weight="bold" />
     </div>

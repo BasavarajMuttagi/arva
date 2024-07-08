@@ -26,7 +26,7 @@ const ItemCard = ({
   };
   const addItemToCart = () => {
     if (cart.length == 0) {
-      setStoreId(shop?._id!);
+      setStoreId(shop!._id!);
     }
     addItem({
       description,

@@ -21,7 +21,7 @@ const useGeoLocation = () => {
       return;
     }
 
-    const handleSuccess = (pos: any) => {
+    const handleSuccess = (pos: GeolocationPosition) => {
       const { latitude, longitude } = pos.coords;
       setPosition({ latitude, longitude });
     };

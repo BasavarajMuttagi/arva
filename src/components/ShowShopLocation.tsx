@@ -8,11 +8,12 @@ export default function ShowShopLocation({
   position,
   close,
 }: {
-  position: [number, number] | undefined | any;
+  position: [number, number];
   close: (data: boolean) => void;
 }) {
   const [currentPosition] = useState<[number, number]>(position);
   const mapContainer = useRef(null);
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   const map = useRef<any>(null);
   const [zoom] = useState(15);
   maptilersdk.config.apiKey = import.meta.env.VITE_MAP_API_KEY;

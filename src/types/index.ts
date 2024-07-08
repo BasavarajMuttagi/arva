@@ -6,8 +6,8 @@ export type CoffeeShopData = {
   distance: number;
   isFavorite: boolean;
   isBookmarked: boolean;
-  reviews: number,
-  rating: number,
+  reviews: number;
+  rating: number;
 };
 
 export type CoffeeShopWithImages = {
@@ -16,8 +16,8 @@ export type CoffeeShopWithImages = {
   address: string;
   images: string[];
   products: Product[];
-  reviews: number,
-  rating: number,
+  reviews: number;
+  rating: number;
   location: {
     type: "Point";
     coordinates: [number, number];
@@ -89,4 +89,19 @@ export type OrderData = {
 export type Orders = {
   message: string;
   data: OrderData[];
+};
+
+export type lineItemType = {
+  price_data: {
+    currency: string;
+    product_data: {
+      name: string;
+      description: string;
+      images: string[];
+      metadata: {
+        id: string;
+      };
+    };
+    unit_amount: number;
+  };
 };

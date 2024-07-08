@@ -10,6 +10,7 @@ import apiClient, { cloudFrontBaseUrl } from "../axios/apiClient";
 import Loading from "./Loading";
 import Error from "./Error";
 import toast from "react-hot-toast";
+import { lineItemType } from "../types";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_KEY);
 
@@ -17,7 +18,7 @@ const StripePaymentForm = () => {
   const { cart, selectedStoreId, selectedAddress } = useEcomStore();
 
   const getLineItems = () => {
-    let lineItems: any[] = [];
+    const lineItems: lineItemType[] = [];
     cart.forEach((eachItem: Item) => {
       const temp = {
         price_data: {
@@ -62,7 +63,7 @@ const StripePaymentForm = () => {
   const { isLoading, isError } = useQuery({
     queryKey: ["stripe-session"],
     queryFn: () =>
-      GetStripeSessionSecret().then((data: any) => {
+      GetStripeSessionSecret().then((data: { clientSecret: string }) => {
         setClientSecret(data.clientSecret);
         return data;
       }),

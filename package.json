@@ -7,6 +7,9 @@
     "dev": "vite --host",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "prettier": "prettier --check \"**/*.{js,ts,jsx,tsx,json,css,scss,md}\"",
+    "format": "prettier --write \"**/*.{js,ts,jsx,tsx,json,css,scss,md}\"",
+    "flow": "npm run lint && npm run prettier && npm run build",
     "preview": "vite preview"
   },
   "dependencies": {

@@ -64,7 +64,7 @@ const SwipeUpScreen = ({
             {showMap &&
               createPortal(
                 <ShowShopLocation
-                  position={shop?.location.coordinates}
+                  position={shop!.location.coordinates}
                   close={setShowMap}
                 />,
                 document.body,

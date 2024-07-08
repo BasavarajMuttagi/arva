@@ -9,7 +9,7 @@ import apiClient from "../axios/apiClient";
 import { CoffeeShopWithImages } from "../types";
 
 const CafeLayout = () => {
-  let { shopId } = useParams();
+  const { shopId } = useParams();
   const navigate = useNavigate();
   const getCoffeeShopById = async () => {
     const records = await apiClient.get(`/shop/getshop/${shopId}`);
@@ -36,7 +36,7 @@ const CafeLayout = () => {
       <div className="relative h-[30%] bg-white">
         <ImageSlider
           isLoading={isLoading}
-          images={shop?.images!}
+          images={shop!.images!}
           isError={isError}
         />
       </div>

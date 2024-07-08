@@ -10,7 +10,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={routes} />
-      <ReactQueryDevtools buttonPosition="bottom-left"/>
+      <ReactQueryDevtools buttonPosition="bottom-left" />
       <Toaster />
     </QueryClientProvider>
   );

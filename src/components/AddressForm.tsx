@@ -48,7 +48,7 @@ const AddressForm = () => {
       });
   };
 
-  const getlocation = (location: [number]) => {
+  const getlocation = (location: [number, number]) => {
     setValue("location.coordinates", location);
   };
 

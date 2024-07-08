@@ -6,7 +6,7 @@ import "./../map.css";
 export default function MyMap({
   getLocation,
 }: {
-  getLocation: (data: any) => void;
+  getLocation: (location: [number, number]) => void;
 }) {
   const { position } = useGeoLocation();
   const [currentPosition, setCurrentPosition] = useState<[number, number]>([
@@ -15,6 +15,7 @@ export default function MyMap({
   ]);
   const [marker, setMarker] = useState<maptilersdk.Marker>();
   const mapContainer = useRef(null);
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   const map = useRef<any>(null);
   const [zoom] = useState(15);
   maptilersdk.config.apiKey = import.meta.env.VITE_MAP_API_KEY;
