@@ -36,7 +36,7 @@ const CafeLayout = () => {
       <div className="relative h-[30%] bg-white">
         <ImageSlider
           isLoading={isLoading}
-          images={shop!.images!}
+          images={shop!?.images!}
           isError={isError}
         />
       </div>
